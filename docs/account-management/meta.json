@@ -1,0 +1,9 @@
+{
+  "title": "Account Management",
+  "pages": [
+    "account-settings",
+    "billing-page-and-managing-subscription",
+    "workspace-management",
+    "usage-statistics"
+  ]
+}

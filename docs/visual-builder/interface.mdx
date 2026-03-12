@@ -1,0 +1,183 @@
+---
+title: Interface
+description: How to navigate and manage scenarios in the Scenarios interface.
+sidebar_position: 1
+lastUpdated: '2026-01-01'
+---
+
+# Interface
+
+The **Scenarios** page is where you view, organize, and manage your scenarios and folders.
+
+---
+
+## Scenarios and folders
+
+Existing scenarios are available on the **Scenarios** page. You can also organize scenarios into folders (including nested subfolders).
+
+![Scenarios page: folders and scenarios](./interface/chrome_wIT7Peiq0Q.png)
+
+### Create a folder and move a scenario
+
+1. Click **Add new folder** and enter the folder name.
+
+![Add new folder](./interface/chrome_Fq3AtOb0N2.png)
+
+2. Click **Save**.
+
+![Save folder](./interface/chrome_KMGWFmAoTL.png)
+
+3. In the **All Scenarios** table, open the scenario row menu (**⋯**).
+
+![Scenario row menu](./interface/chrome_tHH3hMQCdI.png)
+
+4. Click **Move Scenario** and select the target folder.
+
+![Move scenario](./interface/chrome_qbVYfoIAgs.png)
+
+<Callout type="info" title="Subfolders">
+You can add subfolders by using **Add new folder** from the parent folder menu.
+
+![Add subfolder](./interface/chrome_Fq7uOvjBbE.png)
+</Callout>
+
+---
+
+## All Scenarios table
+
+You can view key attributes of each scenario in the **All Scenarios** table.
+
+![All Scenarios table](./interface/chrome_EMVbhWx4Rg.png)
+
+- **Scenario Name**: shown in the **Name** column. You can use the “gear” icon to switch the column to show the scenario’s webhook URL trigger instead of the name.
+
+![Name column settings](./interface/chrome_Mdktk2Leiq.png)
+
+- **Scenario Status**: shown in the **Status** column (for example, **Pause** or **Active**).
+- **Scenario Creation Date**: shown in the **Creation Date** column. You can use the “gear” icon to show the modification date instead of the creation date.
+
+![Creation date settings](./interface/chrome_6PIHXGwyPC.png)
+
+- **Scenario Type**: shown in the **Type** column.
+- **Menu**: actions available for each scenario.
+
+![Scenario menu](./interface/untitled.png)
+
+### Scenario menu
+
+The scenario menu allows you to:
+
+- **Enable** or **Disable** a scenario (changes status without opening the scenario).
+- **Move** a scenario to a different folder.
+- **Copy** a scenario to paste its content into external tools, or into another scenario.
+
+<Callout type="info" title="Related guide">
+For details, see [Copying Scenarios and Nodes](./nodes/copy_nodes).
+</Callout>
+
+- **Export** a scenario (downloads a JSON file with the scenario content).
+- **Delete** a scenario.
+
+<Callout type="warning" title="Delete is permanent">
+After you confirm deletion in the modal, the scenario is permanently deleted.
+</Callout>
+
+![Delete confirmation](./interface/chrome_Q8rWr2gz8L.png)
+
+---
+
+## Searching and filtering
+
+### Table filters
+
+Use the filters above the table to show:
+
+- **All**: scenarios in any status
+- **Active Scenarios**: only active scenarios
+- **Inactive Scenarios**: only paused scenarios
+
+![Status filters](./interface/chrome_jMfimRTPTE.png)
+
+### Search and type filter
+
+At the top of the page, you can use:
+
+- **Search**: type a scenario name
+- **Type filter**: filter by scenario type (for example, **All Scenarios**, **Scenario**, **Nodul**)
+
+![Search and type filter](./interface/chrome_AhUc7V0HF3.png)
+
+---
+
+## Import & Export (folders and scenarios)
+
+<Callout type="info" title="Related guide">
+If you’re looking specifically for transfer steps, see [Import & Export](./scenarios/import_export).
+</Callout>
+
+### Export a folder
+
+You can export a folder only if it contains at least one scenario (empty folders can’t be exported).
+
+1. Open the folder menu (next to the folder or from the folder row in the table).
+
+![Folder export menu](./interface/untitled_1.png)
+
+2. Click **Export folder**.
+
+![Export folder action](./interface/untitled_2.png)
+
+After export, you’ll get an archive that contains folders and scenario JSON files. Folder names and hierarchy are preserved.
+
+### Export a scenario
+
+1. Open the scenario row menu (**⋯**).
+
+![Scenario export menu](./interface/untitled_3.png)
+
+2. Click **Export Scenario**.
+
+![Export scenario action](./interface/untitled_4.png)
+
+### Import a scenario (or a folder)
+
+You can import into **All Scenarios** or into a specific folder.
+
+1. Open the menu next to **All Scenarios** or next to a folder.
+
+![Import menu locations](./interface/untitled_5.png)
+
+2. Click **Import a folder or scenario**.
+
+![Import action](./interface/untitled_6.png)
+
+3. Select a file and confirm upload.
+4. Verify that the imported scenario appears (by default, it is not active and not published).
+
+<Callout type="info" title="Webhook URL uniqueness check">
+When importing a scenario, Latenode checks that the imported **Trigger on Webhook** node is unique by URL. If the URL is not unique, the import won’t proceed.
+</Callout>
+
+---
+
+## Creating a scenario
+
+To create a new scenario, click **Create new scenario** (or **Add new scenario**) on the scenarios list page.
+
+![Create scenario button](./interface/chrome_QrSdlxxM1b.png)
+
+After you click it, Latenode opens the scenario editor.
+
+<Callout type="info" title="Create scenarios inside folders">
+You can add scenarios to specific folders by using **Add new scenario** from the folder menu.
+</Callout>
+
+![Add scenario in folder menu](./interface/chrome_szu2qlTpOE.png)
+
+
+
+
+
+
+
+

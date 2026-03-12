@@ -1,0 +1,17 @@
+{
+  "title": "Workflow Builder",
+  "pages": [
+    "interface",
+    "scenarios",
+    "nodes",
+    "authorizations",
+    "routes",
+    "data-flow",
+    "operators",
+    "code-tools",
+    "variables",
+    "ai-builder-beta",
+    "possible-errors",
+    "error-handling"
+  ]
+}

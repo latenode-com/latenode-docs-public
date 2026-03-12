@@ -1,0 +1,138 @@
+---
+title: Scenario Building Errors
+description: "Common errors when building and configuring scenarios: variables, expressions, required fields, JSON, timeouts."
+lastUpdated: '2026-01-01'
+---
+
+# Scenario Building Errors
+
+Below are common errors that occur when configuring nodes, using variable substitutions, and running scenarios. Variable format is described in [Variable templates](/visual-builder/data-flow/passing-data#variable-templates).
+
+---
+
+## Variable syntax errors
+
+The correct variable format and placeholders are described on [Passing data](/visual-builder/data-flow/passing-data). The platform uses its own variable format. Plain names like `{{first_name}}`, non-Latin characters, or bare operators inside `{{ }}` are not valid.
+
+**Messages:** `Unexpected symbol: f — invalid variable format {{first_name}}`, `Unexpected symbol: 乙 — non-Latin character`, `Unexpected symbol: & — expression {{&&}} contains invalid operator`
+
+**Cause:** plain name `{{first_name}}` used; non-Latin characters in the name; or operator (`&&`, `||`) used directly inside `{{ }}`.
+
+<Callout type="info" title="What to do">
+- Node output: **`{{$nodeNumber.field}}`**, e.g. `{{$11.first_name}}`.
+- Scenario variable: **`{{_.variableName}}`**, global: **`{{%.name}}`**.
+- Insert substitutions via the variable helper widget or see [Variable templates](/visual-builder/data-flow/passing-data#variable-templates).
+</Callout>
+
+---
+
+## Expression parsing errors
+
+The expression engine cannot parse a formula, condition, or function call.
+
+**Messages:** `Expression parsing error: unsupported expression`, `Expression error: split() called with three arguments`, `invalid syntax near '&&'`
+
+**Cause:** calling functions like `randomString()` or `split()` with unsupported syntax; using `&&` / `||` directly inside `{{ }}`; unmatched brackets or quotes.
+
+<Callout type="info" title="What to do">
+- Move complex logic to a [JavaScript](/visual-builder/code-tools/node-js) node.
+- For conditions, use a route filter or an IF-style node.
+- Validate the expression in the editor before saving.
+</Callout>
+
+---
+
+## Empty required fields
+
+A mandatory node parameter has no value at execution time.
+
+**Messages:** `required field "Message ID" is empty`, `required field "Chat ID" is empty`, `required field "Search Value" is empty`
+
+**Cause:** field left blank or set to a non-existent variable `{{xxx}}`; previous node returned no data; variable path does not match the node output.
+
+<Callout type="info" title="What to do">
+- Map the field to previous node output: **`{{$nodeNumber.field}}`**, e.g. `{{$11.id}}`.
+- Check the previous node output in [execution history](/visual-builder/scenarios/execution-history).
+- Add a condition to verify the value exists before passing it.
+</Callout>
+
+---
+
+## Undefined / null values
+
+The node tries to access a property on a value that does not exist.
+
+**Messages:** `Cannot read properties of undefined (reading "0")`, `Cannot read properties of null (reading 'access_token')`, `undefined is not an array or an array-like object`
+
+**Cause:** previous node returned empty or unexpected data; variable path points to a non-existent field; auth token missing or expired.
+
+<Callout type="info" title="What to do">
+- Log the previous node output to verify its structure.
+- In a JavaScript node use optional chaining: `data?.field ?? ''`.
+- Add a condition to check the value exists before using it.
+</Callout>
+
+---
+
+## JSON parse errors
+
+The JSON Parse node receives input that is not valid JSON.
+
+**Messages:** `SyntaxError: invalid or unexpected token`, `Unexpected token 'R' — input is plain text`, `Bad control character in string literal`, `Parameter "..." is invalid JSON`
+
+**Cause:** previous node returned plain text, HTML, or error message; AI node output wrapped in markdown fences \`\`\`json; unescaped newlines in JSON; input is CSV, XML, or other non-JSON format.
+
+<Callout type="info" title="What to do">
+- Log the raw output before the JSON Parse node to inspect it.
+- Use a JS node to strip markdown fences if needed.
+- In AI node prompts, add "respond only in valid JSON, no markdown".
+</Callout>
+
+---
+
+## Not iterable / empty output
+
+A node expects an array but receives a single object, null, or nothing.
+
+**Messages:** `rows_input is not iterable`, `undefined is not an array or an array-like object`, `get last records empty list`
+
+**Cause:** passing a single object where an array is expected; previous node returned empty results; wrong data structure from upstream node.
+
+<Callout type="info" title="What to do">
+- Wrap single objects in an array in a JS node: `[data]`.
+- Add a condition to handle empty arrays before iterating.
+- Ensure the source returns an array before the node that expects it.
+</Callout>
+
+---
+
+## Execution timeout
+
+Scenario or node exceeds allowed execution time.
+
+**Messages:** `Scenario execution time exceeded`, `TimeoutError: Waiting for selector failed: 60000ms exceeded`, `524 timeout — webhook scenario marked Canceled`
+
+**Cause:** processing too many records in one run; inefficient loop or missing filters; Headless Browser waiting for a selector that never appears; webhook needs response in &lt;3s but scenario is too slow.
+
+<Callout type="info" title="What to do">
+- Split large batches using an [Iterator](/visual-builder/data-flow/iterating).
+- Add filters to reduce data volume before heavy operations.
+- For fast webhook response: return 200 immediately, process asynchronously.
+- Use [enhanced compute (Engine Tier 1)](/visual-builder/scenarios/enhanced-compute-resources) for heavy scenarios.
+</Callout>
+
+---
+
+## HTTP Request node errors
+
+Error in the HTTP Request node: invalid or empty URL, unsupported protocol, or control characters in the URL field.
+
+**Messages:** `unsupported protocol scheme ""`, `URL missing http:// or https://`, `invalid control character in URL`, `Invalid URL — empty or malformed URL`
+
+**Cause:** variable for URL resolved to null (URL becomes `https://null`); URL built by concatenation with missing base; hidden newline or carriage return in the URL field.
+
+<Callout type="info" title="What to do">
+- Log the URL variable value before the HTTP Request node.
+- Add a condition so the request runs only if URL is not null or empty.
+- Use a JS node to trim and validate the URL: `url.trim()`.
+</Callout>

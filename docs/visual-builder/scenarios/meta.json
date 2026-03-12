@@ -1,0 +1,12 @@
+{
+  "title": "Scenarios",
+  "pages": [
+    "building-scenarios",
+    "execution-history",
+    "version-history",
+    "publishing-scenarios",
+    "import-export",
+    "enhanced-compute-resources",
+    "platform-limits"
+  ]
+}

@@ -1,0 +1,202 @@
+---
+title: Building Scenarios
+description: Steps for setting up an automation scenario in Latenode.
+sidebar_position: 1
+lastUpdated: '2026-01-01'
+---
+
+# Building Scenarios
+
+## Saving a Scenario
+
+After adding a scenario, rename it (if needed), add a description, and click **Save**.
+
+![Save scenario](./building-scenarios/untitled.png)
+
+<Callout type="warning" title="Save regularly">
+The **Save** button becomes active as soon as you make changes to the scenario or its nodes. To avoid losing changes, save your work regularly.
+</Callout>
+
+---
+
+## Running a Scenario
+
+### One-time Execution
+
+<Callout type="info" title="Before running the scenario">
+Before running a scenario, you need to configure it. If you're just starting out, see [Building Your First Scenario](../../get-started/quickstarts/building-first-scenario).
+</Callout>
+
+Click **Run Once** to execute the scenario once. This is useful for testing and debugging.
+
+![Run once](./building-scenarios/untitled_1.png)
+
+Depending on the trigger node:
+
+- If the trigger node is an app node, create an event in the external application to trigger the scenario.
+- If the trigger node is **Trigger on Webhook**, send an HTTP request to the node's URL.
+- If the trigger node is **Trigger on Schedule** or **Trigger on Run once**, no additional actions are required.
+
+After the scenario executes:
+
+- Status icons (success / error) appear in the upper right corner of the nodes. Click on them to view details.
+
+![Node execution status](./building-scenarios/untitled_2.png)
+
+- A new entry appears in **Execution History**.
+
+![Execution history](./building-scenarios/untitled_3.png)
+
+- The **Data** tab shows data from previous nodes.
+
+![Data tab](./building-scenarios/untitled_4.png)
+
+- The **Variables** tab shows variable data (if variables were created).
+
+![Variables tab](./building-scenarios/untitled_5.png)
+
+You can stop a one-time execution by clicking **Stop**.
+
+![Stop](./building-scenarios/untitled_6.png)
+
+### Automatic Execution and Activation
+
+To enable automatic execution of the scenario, activate the scenario using the **Active** toggle at the bottom of the scenario page. When the scenario is active, it runs automatically in response to configured triggers (webhooks, schedules, or app events).
+
+![Active toggle](./building-scenarios/untitled_7.png)
+
+<Callout type="warning" title="Notifications">
+Notifications about scenario execution results are displayed only when running the scenario manually.
+</Callout>
+
+---
+
+## Deployment and Scenario Branches
+
+Scenarios have two branches:
+
+- **Development**: for testing configuration and data processing results
+- **Production**: for the production version of the scenario
+
+Development and Production can be edited and executed independently.
+
+To create a new Development version and publish it to Production:
+
+1. Click **Save** to create a new version.
+
+![Save version](./building-scenarios/untitled_8.png)
+
+2. Ensure that the next Development version appears in the version list.
+
+![Version list](./building-scenarios/untitled_9.png)
+
+3. Click **Deploy**.
+
+![Deploy](./building-scenarios/untitled_10.png)
+
+4. Ensure that the Production branch appears in the version list.
+
+![Production branch](./building-scenarios/untitled_11.png)
+
+<Callout type="info" title="Version labels">
+**Selected** indicates the currently selected scenario version. **Production** indicates the Production branch.
+</Callout>
+
+If needed, you can roll back the Production branch:
+
+1. Select a previous version.
+
+![Select previous version](./building-scenarios/untitled_12.png)
+
+2. Click **Deploy** to publish it to Production.
+
+![Deploy previous version](./building-scenarios/untitled_13.png)
+
+3. Check the **Selected** and **Production** labels on the published version.
+
+![Check labels](./building-scenarios/untitled_14.png)
+
+---
+
+## Triggers and Scenario Branches
+
+Each scenario has a trigger node that starts the scenario. The behavior of some triggers depends on whether the scenario is deployed and whether it is active.
+
+### Trigger on Webhook
+
+The [**Trigger on Webhook**](../../../integrations/core-nodes/trigger-on-webhook.mdx) node starts the scenario when an HTTP request is sent to one of the node's URLs (Production or Development).
+
+![Production and Development URLs](./building-scenarios/untitled_15.png)
+
+- The Production branch is triggered by requests to the Production URL. Deploy the scenario and ensure it is active.
+
+![Production deployed and active](./building-scenarios/untitled_16.png)
+
+- The Development branch is triggered by requests to the Development URL. For requests to be accepted, either run the scenario once or activate it with the **Active** toggle.
+
+![Development run or activate](./building-scenarios/untitled_17.png)
+
+### Trigger on Schedule
+
+The [**Trigger on Schedule**](../../../integrations/core-nodes/trigger-on-schedule.mdx) node triggers the Production branch according to the configured schedule (while the scenario is active).
+
+The Development branch is not triggered on schedule, but you can run it manually with **Run once**.
+
+![Trigger on Schedule](./building-scenarios/untitled_18.png)
+
+### Trigger on Run once
+
+The [**Trigger on Run once**](../../../integrations/core-nodes/trigger-on-run-once.mdx) node triggers the Development branch when **Run once** is clicked. The Production branch is not triggered when **Run once** is clicked.
+
+![Trigger on Run once](./building-scenarios/untitled_19.png)
+
+<Callout type="info" title="Multiple trigger nodes">
+You can have multiple trigger nodes in a single scenario. For example, use **Trigger on Run once** for testing and **Trigger on Webhook** for end-to-end testing with incoming external data.
+</Callout>
+
+### App Triggers
+
+App trigger nodes behave differently depending on the branch:
+
+- The Production branch is triggered at regular intervals (depending on your plan) if the triggering event in the app has occurred.
+
+![App trigger in Production](./building-scenarios/untitled_20.png)
+
+<Callout type="info" title="Polling intervals by plan">
+On **Starter**, triggers run every 10 minutes. On **Grow**, every 5 minutes. On **Prime**, every 2 minutes.
+</Callout>
+
+<Callout type="warning" title="Instant triggers">
+Nodes with the word "Instant" in their name are an exception: they trigger immediately after the triggering event occurs in the external application.
+</Callout>
+
+![Instant trigger](./building-scenarios/untitled_21.png)
+
+- The Development branch is not triggered by the app trigger node. After manual **Run once**, it will execute if the triggering event occurs in the app.
+
+---
+
+## Other Settings
+
+### Aligning Nodes
+
+At the bottom of the scenario page, use **Align Nodes** to horizontally align the scenario chain (when nodes are connected by links).
+
+<Callout type="warning" title="Unconnected nodes">
+If scenario nodes are not connected, unconnected nodes are aligned vertically.
+</Callout>
+
+![Align nodes](./building-scenarios/untitled_22.png)
+
+### Stickers
+
+Use **Add Sticker** to add notes to the scenario. Stickers are optional but can be used for comments, links, and code snippets.
+
+![Add sticker](./building-scenarios/untitled_23.png)
+
+You can resize a sticker by dragging its edges. Right-click on a sticker to:
+
+- **Copy** — copy it to duplicate in the current or another scenario
+- **Delete** — delete it
+
+![Sticker context menu](./building-scenarios/untitled_24.png)

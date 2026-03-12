@@ -1,0 +1,103 @@
+---
+title: Connecting to MCP Tools
+description: How to connect MCP-compatible clients to your Latenode tools.
+sidebar_position: 2
+lastUpdated: '2026-01-01'
+---
+
+# Connecting to MCP Tools
+
+This guide explains how to connect popular **MCP clients** (for example, **Cursor** and **Claude Desktop**) to your tools published via **MCP Trigger** in Latenode.
+
+## Before you start
+
+You'll need:
+
+- A scenario with **MCP Trigger** configured (see [MCP Nodes](/mcp/mcp-nodes))
+
+{/* Example:
+![Copy Server URL in MCP Trigger](./connecting-to-mcp-tools/server_url.png)
+*/}
+
+## Step 2 — Connect using your MCP client
+
+Below are quick setup steps for common clients. The UI labels can differ between versions, but the idea is always the same:
+**add a new MCP server/connector** and paste your **Server URL**.
+
+### Cursor
+
+1. Open **Cursor**
+2. Go to **Settings**
+3. Find **MCP** (or **MCP Servers / Tools**)
+4. Click **Add server**
+5. Paste the **Server URL** you copied from Latenode
+6. If prompted for auth, provide your **API key**
+7. Save, then open the tools list and confirm your Latenode tools are visible
+
+{/* TODO: Add screenshot(s) of Cursor MCP server setup */}
+{/* Example:
+![Cursor MCP server setup](./connecting-to-mcp-tools/cursor_01.png)
+*/}
+
+### Claude Desktop
+
+1. Open **Claude Desktop**
+2. Open **Settings**
+3. Go to **Connectors**
+4. Click **Add custom connector**
+5. Paste the **Server URL** from Latenode
+6. If prompted for auth, provide your **API key**
+7. Save, then verify the connector is enabled
+
+{/* TODO: Add screenshot(s) of Claude Desktop connector setup */}
+{/* Example:
+![Claude Desktop connector setup](./connecting-to-mcp-tools/claude_desktop_01.png)
+*/}
+
+### ChatGPT (MCP-compatible client)
+
+If you’re using a ChatGPT setup that supports MCP servers (directly or via a connector/bridge), the steps are the same:
+
+1. Open your client’s **Connectors / Tools / MCP** settings
+2. Add a new MCP server
+3. Paste the **Server URL** from Latenode
+4. Provide the **API key** if your MCP Trigger requires it
+5. Verify tools are listed and callable
+
+### OpenAI (Chat) / OpenAI API (MCP-compatible client)
+
+If your OpenAI setup supports MCP (directly or via a compatible MCP client):
+
+1. Add a new MCP server in your MCP client / middleware
+2. Paste the **Server URL**
+3. Configure authentication if required
+4. Verify tool discovery works, then call a tool in a test prompt
+
+### Vapi (MCP-compatible client)
+
+If you use Vapi through an MCP-capable integration:
+
+1. Add your Latenode MCP server in the Vapi MCP integration settings
+2. Paste the **Server URL**
+3. Provide the **API key** if required
+4. Test by calling a tool from a simple voice agent flow
+
+## Troubleshooting
+
+### Tools don’t appear
+
+- Make sure **Tool Name** is set on the nodes connected to **MCP Trigger** (otherwise tools won’t be discoverable).
+- Confirm you copied the correct **Server URL** from **MCP Trigger**.
+- If your scenario requires auth, confirm the client is actually sending the required credentials.
+
+### Connection drops or times out
+
+- MCP uses a streaming connection (SSE). Ensure a stable network connection.
+- Keep tool execution fast and return only what you need (use **MCP Response**).
+
+### Authentication errors (401/403)
+
+- Confirm **Authentication** is enabled/disabled as expected in MCP Trigger.
+- If enabled, regenerate/recopy your API key and update it in the client.
+
+

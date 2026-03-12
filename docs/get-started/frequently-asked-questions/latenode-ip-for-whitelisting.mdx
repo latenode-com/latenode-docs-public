@@ -1,0 +1,31 @@
+---
+title: Latenode IP Address for Whitelisting
+description: IPs to allow for external connections.
+lastUpdated: '2026-01-01'
+---
+
+# Latenode IP Address for Whitelisting
+
+When adding Latenode to the allowlist of external services such as databases, webhooks, or APIs, please use the following static IP address:
+
+**172.214.62.12**
+
+This IP address is static and can be safely whitelisted across your infrastructure.
+
+## Verifying the IP
+
+To check which IP address is being used by your scenario when making outbound requests, you can call any external service that returns the requester's public IP.
+
+**Example using HTTP Request node:**
+
+```bash
+curl https://api.ipify.org?format=json
+```
+
+If you run this inside a Latenode scenario, the response should be:
+
+```json
+{"ip":"172.214.62.12"}
+```
+
+This will confirm that your scenario's outbound requests are coming from the correct IP address.

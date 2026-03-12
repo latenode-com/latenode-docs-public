@@ -1,0 +1,246 @@
+---
+title: Embedded SDK functions
+description: Instructions for using functions from SDK
+sidebar_position: 7
+lastUpdated: '2026-01-01'
+---
+
+# SDK Functions Overview
+
+Starting from SDK version 0.1.5, Latenode Embedded SDK allows programmatic interaction with the platform directly from your application.
+
+You can now execute, deploy, and manage scenarios. 
+
+All methods are **asynchronous** unless otherwise specified and return a `Promise`.
+
+---
+
+## **Run Once**
+
+Runs the currently opened scenario once.
+
+```tsx
+async runOnce(): Promise<void>
+```
+
+**Description:**
+
+Triggers a one-time execution of the current scenario in test mode.
+
+**Example:**
+
+```tsx
+await sdk.runOnce();
+```
+
+---
+
+## **Save**
+
+Saves the currently opened scenario.
+
+```tsx
+async save(): Promise<void>
+```
+
+**Description:**
+
+Saves all current changes in the scenario editor.
+
+**Example:**
+
+```tsx
+await sdk.save();
+```
+
+---
+
+## **Deploy**
+
+Deploys the currently opened scenario.
+
+```tsx
+async deploy(): Promise<void>
+```
+
+**Description:**
+
+Publishes the scenario and applies all saved changes to the production environment.
+
+**Example:**
+
+```tsx
+await sdk.deploy();
+```
+
+---
+
+## **Activate / Deactivate Scenario**
+
+Toggles the active state of the current scenario.
+
+```tsx
+toggleActiveScenarioState(): void
+```
+
+**Description:**
+
+Activates or deactivates the scenario depending on its current state.
+
+**Example:**
+
+```tsx
+sdk.toggleActiveScenarioState();
+```
+
+---
+
+## **Create Empty Scenario**
+
+Creates an empty scenario with the specified name.
+
+```tsx
+async createEmptyScenario(title?: string): Promise<void>
+```
+
+**Parameters:**
+
+- `title` *(optional, string)* — name of the new scenario.
+
+**Example:**
+
+```tsx
+await sdk.createEmptyScenario("New empty scenario");
+```
+
+---
+
+## **Get Node Types**
+
+Retrieves all available node types that can be added to a scenario.
+
+```tsx
+async getNodeTypes(): Promise<NodeType[]>
+```
+
+**Returns:**
+
+An array of node type objects.
+
+**Example:**
+
+```tsx
+const nodeTypes = await sdk.getNodeTypes();
+console.log(nodeTypes);
+```
+
+---
+
+## **Add New Node**
+
+Adds a new node of the specified type to the scenario canvas.
+
+```tsx
+async addNewNode(nodeTypeId: string, title?: string): Promise<void>
+```
+
+**Parameters:**
+
+- `nodeTypeId` *(string, required)* — type identifier of the node (retrieved via `getNodeTypes()`).
+- `title` *(optional, string)* — name for the new node.
+
+**Example:**
+
+```tsx
+const types = await sdk.getNodeTypes();
+await sdk.addNewNode(types[0].id, "My new node");
+```
+
+---
+
+## **Get Scenario Webhooks URLs**
+
+Returns an array of webhook URLs for all webhook nodes in the current scenario.
+
+```tsx
+async getScenarioWebhooksUrls(): Promise<ScenarioWebhookEntry[]>
+```
+
+**Interface:**
+
+```tsx
+interface ScenarioWebhookEntry {
+  nodeId: string;
+  url: {
+    dev: string;
+    prod: string;
+  };
+}
+```
+
+**Example:**
+
+```tsx
+const urls = await sdk.getScenarioWebhooksUrls();
+console.log(urls);
+```
+
+---
+
+## **Create Webhook Scenario**
+
+Creates a new scenario with a webhook node and returns its URLs.
+
+```tsx
+async createWebhookScenario(
+  scenarioTitle?: string,
+  nodeTitle?: string
+): Promise<ScenarioWebhookEntry>
+```
+
+**Parameters:**
+
+- `scenarioTitle` *(optional, string)* — name for the scenario.
+- `nodeTitle` *(optional, string)* — name for the webhook node.
+
+**Returns:**
+
+Webhook URLs for both `dev` and `prod` environments.
+
+**Example:**
+
+```tsx
+const webhook = await sdk.createWebhookScenario("Incoming data", "Webhook");
+console.log(webhook.url.dev);
+```
+
+---
+
+## **Set Scenario Running State Changed Listener**
+
+Registers an event listener that triggers when the scenario's running state changes (e.g., when it starts or stops running).
+
+```tsx
+setScenarioRunningStateChangedListener(
+  handler: ({ isScenarioRunning }: { isScenarioRunning: boolean }) => void
+): () => void
+```
+
+**Parameters:**
+
+- `handler` *(function)* — callback function that receives the scenario running state.
+
+**Returns:**
+
+A cleanup function to remove the listener.
+
+**Example:**
+
+```tsx
+const removeListener = sdk.setScenarioRunningStateChangedListener(({ isScenarioRunning }) => {
+  console.log("Scenario running:", isScenarioRunning);
+});
+
+// later, to remove listener
+removeListener();
+```

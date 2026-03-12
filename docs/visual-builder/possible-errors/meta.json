@@ -1,0 +1,8 @@
+{
+  "title": "Possible Errors",
+  "pages": [
+    "scenario-building-errors",
+    "integrations-api-errors",
+    "platform-limits-errors"
+  ]
+}

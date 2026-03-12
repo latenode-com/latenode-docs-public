@@ -1,0 +1,67 @@
+---
+title: Twitter (X)
+description: Managing incident response automation with Twitter (X).
+lastUpdated: '2026-01-01'
+---
+
+# Twitter (X)
+
+## 1. Creating an App
+
+Go to the [Twitter Developer Portal](https://developer.twitter.com/en/portal/dashboard)
+
+In the **Projects** section, select the **Default project** (it is created automatically)
+
+Click **Add App**
+
+![Add App](./twitter-x/brave_izSuzrZ5UC.png)
+
+Enter a name for your app and click **Next**
+
+![App name](./twitter-x/brave_wB0Ei7Xsvm.png)
+
+The app is now created � but don't save the keys yet.
+
+![App created](./twitter-x/brave_0x9fQBZAU4.png)
+
+We'll return here later to get the necessary data.
+
+---
+
+## 2. Setting Permissions
+
+Go to **User authentication settings**
+
+![Authentication settings](./twitter-x/brave_MYuvfoXve2.png)
+
+Set the necessary permissions (e.g., **Read and Write**)
+
+![Permissions](./twitter-x/brave_VAWVjREE3P.png)
+
+In the **Type of App** section, select:
+
+? **Native App** � Public client
+
+In the **App info** block, make sure to enter the following values exactly:
+
+?? **Callback URL / Redirect URL**:
+
+`https://app.latenode.com/redirected/index.html`
+
+?? **Website URL**:
+
+`https://app.latenode.com/connections`
+
+![App info](./twitter-x/brave_jXregRSfIG.png)
+
+<Callout type="warn">
+**Important**: These fields must be entered exactly as shown � otherwise, the authorization won't work.
+</Callout>
+
+---
+
+After this, you'll receive the **Client ID** and **Client Secret**.
+
+These are the values you need to paste into the authorization form in **Latenode**, then confirm login.
+
+![Credentials](./twitter-x/brave_ziecwuhMJB.png)

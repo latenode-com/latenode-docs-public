@@ -1,0 +1,65 @@
+---
+title: Troubleshooting
+description: Troubleshooting guide for WhatsApp, Telegram, and LinkedIn personal accounts
+lastUpdated: '2026-01-01'
+---
+
+# Troubleshooting
+
+<Callout type="warning">
+Personal accounts are not intended for mass messaging. Use a separate number and minimal load.
+
+New accounts require "warming up" — you cannot send many messages immediately. Gradually increase volumes, otherwise WhatsApp will block the account.
+</Callout>
+
+## Common Errors
+
+### Error 401 Unauthorized
+
+```json
+{
+  "status": 401,
+  "title": "Unauthorized",
+  "message": "This account has been disconnected. To proceed using your account, please re-authorize your connection in the Authorizations section"
+}
+```
+
+**What to do:**
+1. Open the Authorizations section
+2. Click **Reconnect / Reauthorize**
+3. Scan the QR code in WhatsApp on your phone
+4. Make sure your phone is online and WhatsApp is open
+
+<Callout type="info">
+Reauthorization is free if the connection was not deleted and the current period is still paid.
+</Callout>
+
+---
+
+### Frequent Disconnections
+
+The connection may break for various reasons:
+
+**On your side:**
+- Phone is offline or WhatsApp is unloaded from memory
+- WhatsApp Web is open in another service or browser
+- VPN or frequent IP changes
+
+**On WhatsApp's side:**
+- Inactivity for more than 14 days — session closes automatically
+- WhatsApp reinstallation, phone change, or restore from backup — all connected devices are disconnected
+- Phone number change or two-factor authentication PIN change
+- Suspicious activity (unusual IP, frequent reconnections)
+- Issues due to browser cache clearing or system updates
+
+---
+
+## Best Practices
+
+To reduce the risk of blocking:
+
+- Use random intervals between messages
+- Limit the number of recipients
+- Add variation to texts — don't send identical messages
+- Monitor complaints from recipients
+- Avoid words that WhatsApp may consider spam

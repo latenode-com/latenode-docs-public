@@ -1,0 +1,113 @@
+---
+title: Integrations and API Errors
+description: Common HTTP error codes when calling external services and APIs.
+lastUpdated: '2026-01-01'
+---
+
+# Integrations and API Errors
+
+When using integration nodes (HTTP requests, apps, webhooks), the external service or API may return an error response. Below are typical codes in the **4xx** range (request or authorization error) and **5xx** range (server-side error). The exact message depends on the service; the node logs usually show the code and response body.
+
+---
+
+## 4xx — Client errors (request or access)
+
+### 400 Bad Request
+
+**What it means:** The server rejected the request because of invalid format or data (bad JSON, missing required field, wrong value type).
+
+<Callout type="info" title="What to do">
+Check the request body, headers, and parameters in the node settings. Refer to the service's API docs for required fields and format.
+</Callout>
+
+---
+
+### 401 Unauthorized
+
+**What it means:** The request is not authorized. Token is missing, expired, or invalid.
+
+<Callout type="info" title="What to do">
+Check the node's authorization settings (API key, Bearer token, OAuth). Refresh the token or re-authorize in [Authorizations](/visual-builder/authorizations).
+</Callout>
+
+---
+
+### 403 Forbidden
+
+**What it means:** Access to the resource is forbidden. Authorization may succeed but the account or app does not have permission (no access to the object, app limits, IP block, etc.).
+
+<Callout type="info" title="What to do">
+Check the account/app permissions in the service; ensure the token has the required scopes. If needed, create a new authorization with broader permissions.
+</Callout>
+
+---
+
+### 404 Not Found
+
+**What it means:** The resource at the given URL was not found (page, object, or API method removed, or the path is wrong).
+
+<Callout type="info" title="What to do">
+Check the URL in the node settings (typos, API version, correct path to the object). Ensure the resource exists in the service and has not been deleted.
+</Callout>
+
+---
+
+### 408 Request Timeout
+
+**What it means:** The server did not receive the full request within the allowed time and closed the connection.
+
+<Callout type="info" title="What to do">
+Increase the timeout in the node settings if available; simplify or reduce the request size; check if the external service is overloaded.
+</Callout>
+
+---
+
+### 429 Too Many Requests
+
+**What it means:** The API rate limit has been exceeded. The service temporarily rejects requests to reduce load.
+
+<Callout type="info" title="What to do">
+Reduce how often the scenario runs or how many requests go to the same API; add delays between requests or use pagination. For platform-side limits, see [Platform & Limits Errors](/visual-builder/possible-errors/platform-limits-errors#parallel-execution-limit).
+</Callout>
+
+---
+
+## 5xx — Server errors (external service)
+
+### 500 Internal Server Error
+
+**What it means:** An internal error occurred on the external service. The request may be valid but the server could not process it.
+
+<Callout type="info" title="What to do">
+Retry the request later; check the service status (provider status page). If it persists, contact the service support or add [retry on error](/visual-builder/error-handling) to the scenario.
+</Callout>
+
+---
+
+### 502 Bad Gateway
+
+**What it means:** The server (or proxy) acted as a gateway and received an invalid response from the upstream server. Often due to overload or backend failure.
+
+<Callout type="info" title="What to do">
+Retry the request after a short time; if it continues, the issue is on the external service side.
+</Callout>
+
+---
+
+### 503 Service Unavailable
+
+**What it means:** The service is temporarily unavailable (maintenance, overload, outage). Usually asks to try again later.
+
+<Callout type="info" title="What to do">
+Run the scenario again later; enable retry on error in the node or scenario settings.
+</Callout>
+
+---
+
+### 504 Gateway Timeout
+
+**What it means:** The server (gateway) did not get a response from the upstream server in time. The request “hung” on the external service side.
+
+<Callout type="info" title="What to do">
+Retry the request; if 504 persists, the issue or limits are on the external API side (they need to increase timeout or you need to reduce request size).
+</Callout>

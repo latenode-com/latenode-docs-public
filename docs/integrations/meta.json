@@ -1,0 +1,9 @@
+{
+  "title": "🧩 Integrations",
+  "pages": [
+    "core-nodes",
+    "authorizations",
+    "app-nodes",
+    "custom-nodes"
+  ]
+}

@@ -1,0 +1,86 @@
+---
+title: Platform & Limits Errors
+description: Errors related to platform limits, execution limits, and resource limits.
+lastUpdated: '2026-01-01'
+---
+
+# Platform & Limits Errors
+
+Common errors related to platform limits, parallel runs, execution time, and compute resources (CPU/RAM). For more on limits, see [Platform limits](/visual-builder/scenarios/platform-limits).
+
+---
+
+## Plug and Play balance empty
+
+The built-in AI credits for plug-and-play AI nodes have run out (separate from subscription credits).
+
+**Message:** `AI Agent node error: 'plug and play balance is empty'`
+
+**Cause:** Token limit for plug-and-play nodes on your account is exhausted.
+
+<Callout type="info" title="Fix">
+- Top up your **Plug and Play** balance in **Billing**.
+- Or add your own API key in the node's connection settings.
+</Callout>
+
+---
+
+## Parallel execution limit
+
+Too many scenario runs at once — plan's parallel execution limit exceeded (429).
+
+**Messages:** `Webhook responded 429: exceed limit of parallel executions`, or that max simultaneous runs reached and requests are being rejected.
+
+**Cause:** Multiple scenarios triggered at the same time and exceeded the plan limit.
+
+<Callout type="info" title="Fix">
+- Reduce trigger frequency.
+- Upgrade to a plan with a higher parallel execution limit.
+</Callout>
+
+---
+
+## Execution time exceeded
+
+The scenario ran longer than the platform's maximum allowed execution time.
+
+**Message:** `Scenario execution time exceeded`
+
+**Cause:** Scenario execution duration limit hit; often due to iterating over too much data, slow APIs, or heavy processing.
+
+<Callout type="info" title="Fix">
+- Split the array into smaller datasets; filter unneeded elements.
+- Optimize the scenario.
+- Use [enhanced compute resources (Engine Tier 1)](/visual-builder/scenarios/enhanced-compute-resources).
+</Callout>
+
+---
+
+## CPU / RAM resource limits
+
+The scenario needs more compute resources than the current engine tier allows.
+
+**Messages:** `resource limits exceeded`, `Insufficient CPU/RAM resources — switch Memory and CPU Limits to Engine Tier 1`
+
+**Cause:** JavaScript with large payloads in memory, Headless Browser on a low-resource tier, or large file/image processing.
+
+<Callout type="info" title="Fix">
+- Scenario settings → **Memory and CPU Limits** → **Engine Tier 1** or higher. See [Enhanced compute resources](/visual-builder/scenarios/enhanced-compute-resources).
+- Avoid loading large arrays into memory at once; split heavy work into separate scenarios.
+</Callout>
+
+---
+
+## Scenario deployment limits
+
+Unable to deploy or activate — node count or active scenario limit reached for your plan.
+
+**Messages:** `node count limit reached`, `Maximum active scenarios reached — cannot activate new scenario`
+
+**Cause:** Plan limits the number of active scenarios or nodes; too many scenarios are active at once.
+
+<Callout type="info" title="Fix">
+- Deactivate unused scenarios.
+- Simplify large scenarios (split into sub-scenarios).
+- Upgrade to a plan with higher limits.
+</Callout>

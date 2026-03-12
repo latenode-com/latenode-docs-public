@@ -1,0 +1,113 @@
+---
+title: Google Cloud Storage and Google Cloud Pub/Sub
+description: Managing cloud storage and message queues.
+lastUpdated: '2026-01-01'
+---
+
+# Google Cloud Storage and Google Cloud Pub/Sub
+
+To use nodes from the **Google Cloud Storage** and **Google Cloud Pub/Sub** groups, you need to obtain a key (token) and authorize access.
+
+## Obtaining a Token
+
+To get a key (token), follow these steps:
+
+1. Create a Google account and visit [this link](https://cloud.google.com/iam/docs/creating-managing-service-accounts).
+
+2. On the **Create service accounts** page, click **Enable the API**.
+
+![Enable API](./google-cloud-storage-and-pubsub/Untitled.png)
+
+3. On the **Enable API wizard** page, click **CREATE PROJECT**.
+
+![CREATE PROJECT](./google-cloud-storage-and-pubsub/Untitled_1.png)
+
+4. Configure the project and click **CREATE**.
+
+![Configure project](./google-cloud-storage-and-pubsub/Untitled_2.png)
+
+5. Confirm the project and allow API usage.
+
+![Confirm project](./google-cloud-storage-and-pubsub/Untitled_3.png)
+
+![Allow API](./google-cloud-storage-and-pubsub/Untitled_4.png)
+
+6. Go to [this link](https://cloud.google.com/iam/docs/creating-managing-service-accounts) and scroll down. Click **Go to Create a service account**.
+
+![Create service account](./google-cloud-storage-and-pubsub/Untitled_5.png)
+
+7. Select the project created in step 4.
+
+![Select project](./google-cloud-storage-and-pubsub/Untitled_6.png)
+
+8. Configure the account details (only the name is mandatory, but defining access rights is recommended) and click **DONE**.
+
+![Account details](./google-cloud-storage-and-pubsub/Untitled_7.png)
+
+9. Go to [this link](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and scroll down. Click **Go to Service accounts**.
+
+![Service accounts](./google-cloud-storage-and-pubsub/Untitled_8.png)
+
+10. Select the project created in step 4.
+
+![Select project for keys](./google-cloud-storage-and-pubsub/Untitled_9.png)
+
+11. Select the account address for which you need to create a key.
+
+![Select account](./google-cloud-storage-and-pubsub/Untitled_10.png)
+
+12. Go to the **KEYS** tab and click the **ADD KEY** dropdown.
+
+![ADD KEY](./google-cloud-storage-and-pubsub/Untitled_11.png)
+
+13. Choose **Create new key**.
+
+![Create new key](./google-cloud-storage-and-pubsub/Untitled_12.png)
+
+14. Select the JSON key type and click **CREATE**.
+
+![JSON key type](./google-cloud-storage-and-pubsub/Untitled_13.png)
+
+15. View the downloaded key in JSON format. Open the file in any text editor and copy its contents.
+
+![Downloaded key](./google-cloud-storage-and-pubsub/Untitled_14.png)
+
+16. Go to [this link](https://console.cloud.google.com/apis/library) and select the project created in step 4.
+
+![API library](./google-cloud-storage-and-pubsub/Untitled_15.png)
+
+17. Search for the desired API and choose either **Cloud Storage API** or **Cloud Pub/Sub API**.
+
+![Search API](./google-cloud-storage-and-pubsub/Untitled_16.png)
+
+18. Enable the API by clicking **ENABLE**.
+
+![Enable API](./google-cloud-storage-and-pubsub/Untitled_17.png)
+
+## Authorization Setup in Nodes
+
+When configuring nodes in the **Google Cloud Storage** and **Google Cloud Pub/Sub** groups, you need to authorize access. To do this:
+
+1. Select the desired node, for example, from the **Google Cloud Pub/Sub** group.
+
+![Select node](./google-cloud-storage-and-pubsub/Untitled_18.png)
+
+2. Click the **Create an authorization** button.
+
+![Create authorization](./google-cloud-storage-and-pubsub/Untitled_19.png)
+
+3. Click **New authorization** and choose **Cloud Pub/Sub**.
+
+![Choose Cloud Pub/Sub](./google-cloud-storage-and-pubsub/Untitled_20.png)
+
+4. In the **service_json** field, enter the previously obtained key in JSON format and click **Authorize**.
+
+![Enter key](./google-cloud-storage-and-pubsub/Untitled_21.png)
+
+5. Verify the authorization in the node and complete the remaining node configuration fields.
+
+![Verify authorization](./google-cloud-storage-and-pubsub/Untitled_22.png)
+
+You can view the node's execution result by running the scenario or clicking the **Run once** button on the node.
+
+![Execution result](./google-cloud-storage-and-pubsub/Untitled_23.png)

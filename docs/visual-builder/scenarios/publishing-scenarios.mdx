@@ -1,0 +1,40 @@
+---
+title: Publishing Scenarios
+description: How to publish a scenario to Production with Deploy and turn it on for live runs.
+sidebar_position: 1
+lastUpdated: '2026-01-01'
+---
+
+# Publishing Scenarios
+
+Publishing means moving a scenario version from the **Development** branch to the **Production** branch. Production is the live version that runs on schedule, webhooks, or app events. To make that version run, click **Deploy**, then turn the scenario on with the **Active** toggle.
+
+## Before you publish
+
+Save the scenario with **Save** — that adds a new version to [version history](/visual-builder/scenarios/version-history). The version that gets published is the one currently **selected** in the version list (**Selected**). To publish a different version, select it in the list first, then click **Deploy**.
+
+## How to publish (Deploy button)
+
+1. Make sure the version you want is selected in the version list (Selected).
+2. Click **Deploy**.
+3. In the version list, that version will show the **Production** label — it’s now deployed to the live branch.
+
+For a step-by-step guide with screenshots, see [Deployment and scenario branches](/visual-builder/scenarios/building-scenarios#deployment-and-scenario-branches) on the [Building scenarios](/visual-builder/scenarios/building-scenarios) page.
+
+## Making the Production version run
+
+After publishing, the scenario in Production will only run on triggers if it’s **on**. Turn it on with the **Active** toggle at the bottom of the scenario page. While **Active** is off, triggers (webhook, schedule, apps) won’t run the Production branch.
+
+<Callout type="info" title="Check before going live">
+Before turning **Active** on, make sure the scenario is tested (e.g. with **Run once** in Development) and ready for live runs.
+</Callout>
+
+## Rolling back Production
+
+To roll Production back to an earlier version, select that version in the version list and click **Deploy** again — it becomes the new Production. For more, see [Version History](/visual-builder/scenarios/version-history).
+
+## What's next
+
+- [Building scenarios](/visual-builder/scenarios/building-scenarios) — saving, running, deployment, and triggers by branch
+- [Version History](/visual-builder/scenarios/version-history) — version list, Selected and Production labels
+- [Execution History](/visual-builder/scenarios/execution-history) — viewing past runs

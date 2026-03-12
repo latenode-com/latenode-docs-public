@@ -1,0 +1,26 @@
+{
+  "title": "App Authorization Instructions",
+  "pages": [
+    "google-services",
+    "instagram-for-business",
+    "bitrix24",
+    "discord",
+    "facebook",
+    "fauna",
+    "fireflies-ai",
+    "flutterflow",
+    "framer",
+    "front",
+    "google-cloud-storage-and-pubsub",
+    "intercom",
+    "mongodb",
+    "notion",
+    "pagerduty",
+    "salesforce",
+    "shopify",
+    "slack-bot",
+    "supabase",
+    "twitter-x",
+    "zoom"
+  ]
+}

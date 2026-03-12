@@ -1,0 +1,20 @@
+{
+  "title": "Documentation",
+  "root": true,
+  "pages": [
+    "---Documentation---",
+    "get-started",
+    "visual-builder",
+    "ai-agents",
+    "mcp",
+    "databases",
+    "account-management",
+    "legal",
+    "---Integrations---",
+    "integrations",
+    "---White Label---",
+    "white-label",
+    "---Changelog---",
+    "changelog"
+  ]
+}

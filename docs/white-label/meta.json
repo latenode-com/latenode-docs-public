@@ -1,0 +1,12 @@
+{
+  "title": "🎨 White Label",
+  "pages": [
+    "overview",
+    "api-usage",
+    "installing-the-embedded-sdk",
+    "embedded-sdk-functions",
+    "user-authorization",
+    "administration",
+    "sandbox"
+  ]
+}

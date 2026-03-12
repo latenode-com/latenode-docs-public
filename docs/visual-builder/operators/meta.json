@@ -1,0 +1,15 @@
+{
+  "title": "Operators",
+  "pages": [
+    "operators-basics",
+    "ai",
+    "array-functions",
+    "comparisons",
+    "functions",
+    "functions-part-2",
+    "functions-date-time",
+    "key-fields",
+    "mathematical",
+    "variables"
+  ]
+}

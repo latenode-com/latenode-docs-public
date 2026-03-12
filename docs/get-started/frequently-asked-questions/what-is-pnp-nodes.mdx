@@ -1,0 +1,73 @@
+---
+title: Plug-n-Play (PnP) Tokens
+description: What PnP tokens are and how $ nodes are billed.
+sidebar_position: 3
+lastUpdated: '2026-01-01'
+---
+
+# Plug-n-Play (PnP) Tokens
+
+## What are PnP tokens?
+
+![PnP tokens overview](./what-is-pnp-nodes/vivaldi_lvd8z9cLk0.png)
+
+**PnP tokens** are an **optional** billing unit used for nodes marked with the **`$`** icon.
+
+![PnP node marker](./what-is-pnp-nodes/brave_cTltAfCOeL.png)
+
+These nodes interact with external paid resources (third-party APIs, AI models, etc.) **without requiring you to provide your own API keys or maintain external accounts**.
+
+Instead, you work with Latenode as an intermediary: usage is billed through a **single, unified account**, and tokens are charged accordingly.
+
+---
+
+## Pricing and billing
+
+- **1 PnP token = 1 USD**. When a node is executed, the cost is calculated based on actual provider usage, and the equivalent number of tokens is deducted.
+- PnP tokens are charged **in addition to** Execution Credits during a scenario run.
+- **Pay-as-you-go**: you are charged for actual provider usage, not “per request”.
+- Each PnP node shows pricing in its interface (typically provider rate + a small markup for processing costs).
+
+---
+
+## Billing modes
+
+### Pay-per-use (default)
+
+Applies to most PnP nodes such as AI models, file converters, enrichment nodes, and AI agents. Tokens are charged **based on usage**.
+
+### Monthly subscription for authentication
+
+This applies **only** to personal account connections for the following services. In this case, the **`$`** icon means the connection itself is paid and costs **10 PnP tokens per month**:
+
+![Paid authorization warning list](./what-is-pnp-nodes/brave_3QvFu0J3Ww.png)
+
+- Telegram (Personal account)
+- WhatsApp (Personal account)
+- LinkedIn (Personal account)
+
+You will see a clear warning about this when creating the authorization:
+
+![Authorization warning](./what-is-pnp-nodes/brave_k1NMyGvA1Z.png)
+
+---
+
+## Viewing usage
+
+Each PnP node shows its **detailed pricing** in a collapsible section inside the node configuration.
+
+After scenario execution, you can view:
+
+![PnP usage in log](./what-is-pnp-nodes/brave_E6MhpHNZj9.png)
+
+- The exact number of PnP tokens spent
+- The actual execution cost of the node
+
+This data is available under the **Log** tab on the right side of the node.
+
+You can also track overall PnP token usage in **Execution History** (clock icon in the top-right corner of the interface):
+
+![Execution history](./what-is-pnp-nodes/brave_0pelg5VBez.png)
+
+> You can view detailed usage statistics for PnP Tokens on the [Statistics page](https://app.latenode.com/statistic).
+

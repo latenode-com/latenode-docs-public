@@ -1,0 +1,75 @@
+---
+title: Fauna
+description: Managing Fauna database operations.
+lastUpdated: '2026-01-01'
+---
+
+# Fauna
+
+To use **Fauna** group nodes it is necessary to get a key (token) and perform authorization.
+
+## Receiving a token
+
+<Callout type="warn">
+The received key (token) must be saved after copying, as it is displayed only when created.
+</Callout>
+
+To obtain a token you need to:
+
+1. Register in the **Fauna** app and go to the main [page](https://dashboard.fauna.com/resources/home);
+
+2. Click on the **Create Database** button;
+
+![Create Database](./fauna/Untitled.png)
+
+3. Configure the database and click the Create button;
+
+![Configure database](./fauna/Untitled_1.png)
+
+4. Select the required row in the list of databases in the **Databases** table;
+
+![Databases table](./fauna/Untitled_2.png)
+
+5. Place the cursor over the name of the desired database and click the **Manage Keys** icon;
+
+![Manage Keys](./fauna/Untitled_3.png)
+
+6. Click the **Create Key** button;
+
+![Create Key](./fauna/Untitled_4.png)
+
+7. Configure the key parameters and click the **Save** button;
+
+![Save key](./fauna/Untitled_5.png)
+
+8. Copy the created key and save it.
+
+![Copy key](./fauna/Untitled_6.png)
+
+## Configuring authorization in nodes
+
+When configuring a node in the **Fauna** group, authorization is required. To do this, you need to:
+
+1. Select the required node from the **Fauna** group;
+
+![Select node](./fauna/Untitled_7.png)
+
+2. Click the **Create Authorization** button;
+
+![Create Authorization](./fauna/Untitled_8.png)
+
+3. Click the **New Authorization** button and select **Access Token**;
+
+![Access Token](./fauna/Untitled_9.png)
+
+4. In the **access_token** field enter the token you received earlier and click the **Authorize** button;
+
+![Enter token](./fauna/Untitled_10.png)
+
+5. View whether the node has authorization and fill in the remaining node configuration fields.
+
+![Authorization complete](./fauna/Untitled_11.png)
+
+You can view the result of the node execution when you run the scenario or by clicking on the node's **Run Once** button.
+
+![Execution result](./fauna/Untitled_12.png)

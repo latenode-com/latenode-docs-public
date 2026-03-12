@@ -1,0 +1,78 @@
+---
+title: Think & Plan Tools
+description: Reasoning tools that improve AI Agent accuracy and transparency.
+sidebar_position: 1
+lastUpdated: '2026-01-01'
+---
+
+# Think & Plan Tools
+
+![Print](./think-and-plan-tools/print_placeholder.svg)
+
+![Notion Image](./think-and-plan-tools/notion_placeholder.svg)
+
+## Overview
+
+Think Tool and Plan Tool are special reasoning tools that extend the capabilities of an AI Agent. They do not perform business actions themselves � instead, they enforce structured reasoning inside the agent.
+
+Both tools improve result quality and transparency, but they differ in timing and cost:
+
+- **Think Tool**: inserts reasoning between every step.
+- **Plan Tool**: generates a plan once before execution starts.
+
+---
+
+## Think Tool
+
+![Notion Image](./think-and-plan-tools/think_tool_placeholder.svg)
+
+Think Tool forces the agent to pause and write out its reasoning before each action. This reasoning log can be inspected later, making the decision process fully transparent.
+
+When the **Force Think Tool** option is enabled, the tool is injected automatically into every step. When disabled, it behaves like a normal optional tool, and the agent may choose to call it only if prompted.
+
+The log is customizable: the `description` field can guide the style and length of the agent�s notes. For example, the agent can be instructed to keep reasoning concise, or to explicitly confirm progress toward the user�s request after each step.
+
+In testing, Think Tool dramatically increased accuracy:
+
+- Without it, a complex decryption task failed in all runs.
+- With it, **7 out of 8** runs produced the correct result.
+
+The trade-off is higher token usage and slower execution time, since every step includes an additional reasoning call.
+
+---
+
+## Plan Tool
+
+Plan Tool requires the agent to generate a structured plan at the very beginning of execution. The plan is stored in the reasoning log, and then the agent follows it through step by step.
+
+Unlike Think Tool, Plan Tool is called only once, so execution is faster and more economical.
+
+In tests, Plan Tool improved accuracy compared to no reasoning at all, though results were less consistent than with Think Tool:
+
+- About **3�4 successful runs out of 8**
+- Average runtime was shorter and token usage lower
+
+Plan Tool is best for medium-complexity or repetitive workflows where efficiency is more important than maximum accuracy. It offers some transparency, since the initial plan is visible, but does not record reasoning after every action.
+
+---
+
+## Comparison
+
+| Aspect | Think Tool | Plan Tool |
+| --- | --- | --- |
+| Invocation | Before and between every action | Once at the beginning |
+| Log | Step-by-step reasoning entries | Initial plan only |
+| Accuracy | Very high | Improved, but less consistent |
+| Performance | Slower, higher token usage | Faster, lower token usage |
+| Transparency | Full trace of reasoning at each step | Single plan for the run |
+| Flexibility | Can adapt between steps | Fixed once plan is written |
+
+---
+
+## Practical Use
+
+- Choose **Think Tool** when correctness and traceability matter most, such as debugging complex workflows or critical automation. Expect longer runtime and higher cost, but nearly guaranteed improvement in reliability.
+- Choose **Plan Tool** when you need speed and lower token consumption, and can accept some loss in accuracy. It works well for batch scenarios and straightforward tasks.
+
+Both tools return their logs in the UI, so you can always inspect what the agent was �thinking� or �planning.�
+

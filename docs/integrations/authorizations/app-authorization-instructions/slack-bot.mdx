@@ -1,0 +1,91 @@
+---
+title: Slack Bot
+description: Automating Slack bot interactions.
+lastUpdated: '2026-01-01'
+---
+
+# Slack Bot
+
+## Receiving a token
+
+<Callout type="warn">
+Before following the instructions, you need to sign up for **Slack** and create a workspace.
+</Callout>
+
+For nodes of the **Slack bot** group to work, it is necessary to get a token and perform authorization.
+
+To obtain a token you need to:
+
+1. Go to [Slack API](https://api.slack.com/apps) and create an app by clicking on **Create New App**;
+
+![Create New App](./slack-bot/Untitled.png)
+
+2. In the **Create an app** window, select the **From scratch** option;
+
+![From scratch](./slack-bot/Untitled_1.png)
+
+3. Customize the app - fill in the name and select the desired **Slack** space. Click the **Create App** button;
+
+![Create App](./slack-bot/Untitled_2.png)
+
+4. On the application settings page, click the **OAuth & Permissions** tab;
+
+![OAuth & Permissions](./slack-bot/Untitled_3.png)
+
+5. In the **Scopes** block, define the permissions available to the **Slack** bot;
+
+![Scopes](./slack-bot/Untitled_4.png)
+
+6. In the **OAuth Tokens for Your Workspace** block, click the **Install to Workspace** button.
+
+![Install to Workspace](./slack-bot/Untitled_5.png)
+
+7. Confirm accesses by pressing the **Allow** button;
+
+![Allow](./slack-bot/Untitled_6.png)
+
+8. In the **OAuth Tokens for Your Workspace** block, view and copy the **Bot User OAuth Token**;
+
+![Bot User OAuth Token](./slack-bot/Untitled_7.png)
+
+9. Add a bot to the required channel by sending the message `/invite @<botname>` to this channel, where `<botname>` is the name of the bot (corresponds to the name of the application that was created in the above step);
+
+![Invite bot](./slack-bot/Untitled_8.png)
+
+10. View the availability of a bot added to the channel;
+
+![Bot in channel](./slack-bot/Untitled_9.png)
+
+## Configuring authorization in nodes
+
+When configuring a node in the **Slack bot** group, authorization is required. To do this, you need to:
+
+1. Select the required node from the **Slack bot** group;
+
+![Select node](./slack-bot/Untitled_10.png)
+
+2. Click the **Create an authorization** button;
+
+![Create authorization](./slack-bot/Untitled_11.png)
+
+3. Click on **New authorization** (1) and select **Access Token** (2);
+
+![Access Token](./slack-bot/Untitled_12.png)
+
+4. In the **access_token** field enter the token received in item 8 of the instructions above. Press the **Authorize** button;
+
+![Enter token](./slack-bot/Untitled_13.png)
+
+5. View the presence of authorization in the node;
+
+![Authorization present](./slack-bot/Untitled_14.png)
+
+6. Fill in the required fields of the node settings.
+
+![Node settings](./slack-bot/Untitled_15.png)
+
+You can view the result of the node execution when you run the scenario or by clicking on the node's **Run Once** button. You can also see the message sent to the specified Slack channel.
+
+![Execution result](./slack-bot/Untitled_16.png)
+
+![Slack message](./slack-bot/Untitled_17.png)

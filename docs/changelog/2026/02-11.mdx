@@ -1,0 +1,82 @@
+---
+title: February 11 — Platform Updates
+description: Updates from February 11, 2026
+lastUpdated: '2026-02-11'
+---
+import { Sparkles, Bug, Puzzle } from 'lucide-react';
+
+# February 11 — Platform Updates
+
+<div className="flex items-center gap-2 mb-3">
+  <Sparkles className="w-5 h-5" />
+  <h3 className="!mt-0 mb-0">Features</h3>
+</div>
+
+**AI Agent — stability and UX**
+
+- Validation for `fromAIAgent` / `fromMCP`: when invalid characters are entered in parameters, the UI indicates incorrect format
+- Agent chat no longer crashes if the second argument (description) is missing in `fromAIAgent`
+- Fix for `letAIDecide` button: spaces in parameter keys are now replaced with underscores, invalid characters are trimmed
+- Important: the first argument is now taken from the parameter's system key (`key`), not from `title` — this avoids issues with invalid names in MCP and the agent
+- Chat now reacts to node settings changes in real time without saving — system message, session ID, and connected tools apply immediately
+- Chat now shows clear errors in various cases: two tools with the same name, two `fromAIAgent` calls with the same first argument, Structured Output enabled without the word JSON in the prompt, invalid Output JSON Schema
+- Fixed issue with Think tool being invoked incorrectly when settings were unsaved
+
+**AI Agent — tool execution results**
+
+- Tool execution results now return detailed information: status, IDs, start time, size, errors, and other data
+- The agent now sees the actual execution output, not just `success` / `error` — so it can detect and fix incorrectly filled parameters on its own
+- Limits added for data size: input — 1500 characters, output — 3000 characters; a note is added when content is trimmed
+
+**AI Builder — performance**
+
+- Backend updated architecturally
+- Average time before calling the LLM reduced by 4 seconds
+
+**Subscription — scenario management on plan change**
+
+- On downgrade or subscription cancellation, the user receives an email and has 24 hours to manage active scenarios
+- After that period, excess scenarios are deactivated automatically
+
+- Updated execution history button on the canvas: more visible, vertical bar removed
+
+<div className="flex items-center gap-2 mb-3">
+  <Puzzle className="w-5 h-5" />
+  <h3 className="!mt-0 mb-0">New Apps & Updates</h3>
+</div>
+
+**New apps:**
+
+- Azure DevOps
+- Paystack
+- Axonaut
+- Hunter
+- Datadog
+- Geckoboard
+- CircleCI
+- Workbooks CRM
+- Reamaze
+- Infobip
+- Salesflare
+
+**Updates:**
+
+- Tally - new nodes
+- Twitter/X - new nodes
+- Telegram / WhatsApp / LinkedIn Personal Accounts - fixes
+- Pinterest - fixes
+
+**New models:**
+
+- OpenAI Speech-to-Text
+- Anthropic Claude Opus 4.6
+
+<div className="flex items-center gap-2 mb-3">
+  <Bug className="w-5 h-5" />
+  <h3 className="!mt-0 mb-0">Bug Fixes</h3>
+</div>
+
+- Fixed routing bug: interface flickering when opening connection settings between nodes
+- Fixed: WhatsApp, Telegram, and LinkedIn personal account nodes were not appearing in the PNP category filter in the app list
+- Fixed duplicate URL generation in Webhook and MCP Trigger when creating multiple scenarios without page reload
+- Fixed: duplicate MCP Trigger URLs are now correctly rejected on save

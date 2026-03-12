@@ -1,0 +1,773 @@
+---
+title: Installing the embedded SDK
+description: Instructions for integrating and configuring the embedded iFrame mode, enabling seamless embedding of content across platforms
+sidebar_position: 3
+lastUpdated: '2026-01-01'
+---
+
+# Installing the embedded SDK
+
+This article describes how to integrate the Latenode platform into your project using the SDK.
+
+### Container Setup Inside the Website
+
+To use the SDK, you need to prepare a container where the iframe will be rendered. Ensure that the container is already present in the DOM tree.
+
+### SDK Configuration
+
+Add the following tag to your website:
+
+```html
+<script src="https://embedded.latenode.com/static/sdk/0.1.5.js"></script>
+```
+
+Once this script is executed, the `LatenodeEmbeddedSDK` class will be added to the global `window` object.
+
+## Methods of SDK
+
+### configure
+
+The method allows rendering an `iframe`. To do this, you need to call the method on an instance of the `LatenodeEmbeddedSDK` class.
+
+```jsx
+const latenodeSDK = new LatenodeEmbeddedSDK();
+latenodeSDK.configure({
+	allowCookies: true,
+  token: 'USER_JWT_TOKEN',
+  container: 'lowCodeDivContainer',
+  ui: {
+  "scenarios": {
+    "hideEmptyScenariosGreetings": false,
+    "hideExploreAppsButton": true,
+    "logo": {
+      "src": "YOUR_LOGO_URL",
+      "style": {
+        "width": 150,
+        "height": 150,
+        "margin": ""
+      }
+    },
+    "activeStateFilterStyle": "",
+    "activeStateFilter": {
+      "variant": "",
+      "selectedBgColor": "",
+      "selectedTextColor": "",
+      "unselectedBgColor": "",
+      "unselectedTextColor": ""
+    },
+    "foldersPanelWidth": 250,
+    "buttons": {
+      "createScenario": {
+        "iconSvg": "",
+        "type": "",
+        "padding": "",
+        "transparent": false
+      },
+      "startWithTemplate": {
+        ... same structure as createScenario ...
+      },
+      "importScenario": {
+        ... same structure as createScenario ...
+      },
+      "addNewScenario": {
+        ... same structure as createScenario ...
+      },
+      "addNewFolder": {
+        ... same structure as createScenario ...
+      }
+    },
+    "reverseMainActionBtnsOrder": false,
+    "paddingTop": "",
+    "scenariosTable": {
+      "scenarioIconBgColor": "",
+      "sortArrow": {
+        "activeColor": "",
+        "inactiveColor": ""
+      }
+    },
+    "searchInput": {
+      "borderRadius": ""
+    }
+  },
+  "scenario": {
+    "showGrid": false,
+    "nodeTypeList": {
+      "requestNewAppURL": "YOUR_REQUESTING_APP_URL",
+      "categoriesSideBar": {
+        "backgroundColor": ""
+      },
+      "nodeTypeListNodeBackgroungSvg": "",
+      "listTitleFont": {
+        "fontSize": "",
+        "fontWeight": "",
+        "fontFamily": "",
+        "color": ""
+      },
+      "nodeTitleFont": {
+        ... same structure as listTitleFont ...
+      },
+      "nodeDescriptionFont": {
+        ... same structure as listTitleFont ...
+      }
+    },
+    "actionBlock": {
+      "buttons": {
+        "runOnce": {
+          "iconSvg": "",
+          "type": "",
+          "padding": "",
+          "transparent": false
+        },
+        "deploy": {
+          ... same structure as runOnce ... 
+        },
+        "save": {
+          ... same structure as runOnce ...
+        },
+        "addNode": {
+          ... same structure as runOnce ...
+        },
+        "aiNode": {
+          ... same structure as runOnce ...
+        },
+        "aiBuilder": {
+          ... same structure as runOnce ...
+        },
+        "alignNodes": {
+          ... same structure as runOnce ...
+        },
+        "addSticker": {
+          ... same structure as runOnce ...
+        },
+        "undo": {
+          ... same structure as runOnce ...
+        },
+        "redo": {
+          ... same structure as runOnce ...
+        }
+      },
+      "mainLineStyle": {
+        "background": "",
+        "paddingTop": 0,
+        "paddingBottom": 0,
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "boxShadow": "",
+        "borderRadius": ""
+      },
+      "activeSwitchLabelFont": {
+        "fontSize": "",
+        "fontWeight": "",
+        "fontFamily": "",
+        "color": ""
+      }
+    },
+    "nodeDataPanel": {
+      "operators": {
+        "textColor": "",
+        "backgroundColor": ""
+      },
+      "buttons": {
+        "newAuthorization": {
+          "iconSvg": "",
+          "type": "",
+          "padding": "",
+          "transparent": false
+        }
+      }
+    },
+    "scenarioNodeBackgroundSvg": "",
+    "templates": {
+      "buttons": {
+        "cloneThisTemplate": {
+          "iconSvg": "",
+          "type": "default",
+          "padding": "4px 16px",
+          "transparent": true
+        }
+	    }
+    }
+  },
+  "main": {
+    "hideSideMenu": false,
+    "documentationURL": "YOUR_DOCS_URL"
+  },
+  "theme": {
+    "font": {
+      "fontFamily": "",
+      "load": {
+        "googleFontFamily": "",
+        "custom": {
+          "url": "",
+          "format": ""
+        }
+      }
+    },
+    "primaryColor": "#2394ae",
+    "button": {
+      "default": {
+        "default": {
+          "backgroundColor": "white",
+          "textColor": "#2394ae",
+          "borderColor": "#2394ae"
+        },
+        "active": {
+          ... same structure as default ...
+        },
+        "hover": {
+          ... same structure as default ...
+        },
+        "disabled": {
+          ... same structure as default ...
+        },
+        "borderWidth": "2px",
+        "borderRadius": "20px",
+        "gap": "",
+        "padding": ""
+      },
+      "primary": {
+        "default": {
+          ... same structure as default ...
+        },
+        "active": {
+          ... same structure as default ...
+        },
+        "hover": {
+          ... same structure as default ...
+        },
+        "disabled": {
+          ... same structure as default ...
+        },
+        "borderWidth": "2px",
+        "borderRadius": "20px",
+        "gap": "",
+        "padding": ""
+      },
+      "action": {
+        "default": {
+          "backgroundColor": "#233849",
+          "textColor": "white",
+          "borderColor": "#233849"
+        },
+        "active": {
+          ... same structure as default ...
+        },
+        "hover": {
+          ... same structure as default ...
+        },
+        "disabled": {
+          ... same structure as default ...
+        },
+        "borderWidth": "2px",
+        "borderRadius": "20px",
+        "gap": "",
+        "padding": ""
+      },
+      "success": {
+        "default": {
+          "backgroundColor": "#233849",
+          "textColor": "white",
+          "borderColor": "#233849"
+        },
+        "active": {
+          ... same structure as default ...
+        },
+        "hover": {
+          ... same structure as default ...
+        },
+        "disabled": {
+          ... same structure as default ...
+        },
+        "borderWidth": "2px",
+        "borderRadius": "20px",
+        "gap": "",
+        "padding": ""
+      },
+      "danger": {
+        "default": {
+          "backgroundColor": "#bf161f",
+          "textColor": "white",
+          "borderColor": "#bf161f"
+        },
+        "active": {
+          ... same structure as default ...
+        },
+        "hover": {
+          ... same structure as default ...
+        },
+        "disabled": {
+          ... same structure as default ...
+        },
+        "borderWidth": "2px",
+        "borderRadius": "20px",
+        "gap": "",
+        "padding": ""
+      },
+      "subtle": {
+        "default": {
+          "backgroundColor": "white",
+          "textColor": "#2394ae",
+          "borderColor": "#2394ae"
+        },
+        "active": {
+          ... same structure as default ...
+        },
+        "hover": {
+          ... same structure as default ...
+        },
+        "disabled": {
+          ... same structure as default ...
+        },
+        "borderWidth": "2px",
+        "borderRadius": "20px",
+        "gap": "",
+        "padding": ""
+      },
+      "text": {
+        "default": {
+          "backgroundColor": "",
+          "textColor": "",
+          "borderColor": ""
+        },
+        "active": {
+          ... same structure as default ...
+        },
+        "hover": {
+          ... same structure as default ...
+        },
+        "disabled": {
+          ... same structure as default ...
+        },
+        "borderWidth": "2px",
+        "borderRadius": "20px",
+        "gap": "",
+        "padding": ""
+      }
+    },
+    "input": {
+      "borderRadius": "20px"
+    },
+    "switch": {
+      "checkedBackgroundColor": "",
+      "uncheckedBackgroundColor": "",
+      "height": "",
+      "width": "",
+      "padding": ""
+    },
+    "scenario": {
+      "backgroundColor": "#f1f1f1",
+      "nodeTypeList": {
+        "nodeBackgroundSize": ""
+      },
+      "historyDrawer": {
+        "headerBgColor": "",
+        "alert": {
+          "backgroundColor": "",
+          "borderColor": "",
+          "iconColor": "",
+          "linkColor": ""
+        }
+      },
+      "unsavedChangesModal": {
+        "mainActionBtnColor": ""
+      },
+      "nodeSettings": {
+        "headerBgColor": "#256AF4",
+        "bodyBgColor": "#CFD8DB",
+        "footerBgColor": "#1A1B20"
+	    }
+    },
+    "templates": {
+      "tabBtnsColor": "red"
+    }
+  },
+  "translations": {
+    "currentLng": "",
+    "overrides": {
+      "en": {
+        "latenode_scenariosPage_allScenariosTitleLabel": "All scenarios"
+      }
+    }
+  }
+},
+  navigation: {
+    handler: ({ route }) => {
+      console.log('user navigated to ' + route);
+    }
+  }
+}).then(() => {
+ console.log('iframe rendered');
+});
+```
+
+This method returns a `Promise` that resolves once the `iframe` has been loaded and rendered inside the specified `container`.
+
+### Configuration Parameters
+
+```yaml
+auth:
+  - field: token
+    type: string
+    required: true
+    description: JWT token that was generated for the user
+
+embed:
+  - field: container
+    type: string | HTMLElement
+    required: true
+    description: ID of the container or a DOM element reference where the iframe will be rendered
+
+ui:
+  scenarios:
+    - field: hideEmptyScenariosGreetings
+      type: boolean
+      required: false
+      description: Hide greeting message when scenario list is empty
+
+    - field: hideExploreAppsButton
+      type: boolean
+      required: false
+      description: Hide "Explore Apps" button
+
+    - field: logo.src
+      type: string
+      required: false
+      description: Custom logo URL
+
+    - field: logo.style.width
+      type: number | string
+      required: false
+      description: Logo width (px or css value)
+
+    - field: logo.style.height
+      type: number | string
+      required: false
+      description: Logo height (px or css value)
+
+    - field: logo.style.margin
+      type: string
+      required: false
+      description: CSS margin for logo
+
+    - field: activeStateFilterStyle
+      type: string
+      required: false
+      description: Style of active state filter (e.g. "tabs")
+
+    - field: activeStateFilter.variant
+      type: string
+      required: false
+      description: Variant of active state filter
+
+    - field: activeStateFilter.selectedBgColor
+      type: string
+      required: false
+      description: Background color for selected filter
+
+    - field: activeStateFilter.selectedTextColor
+      type: string
+      required: false
+      description: Text color for selected filter
+
+    - field: activeStateFilter.unselectedBgColor
+      type: string
+      required: false
+      description: Background color for unselected filter
+
+    - field: activeStateFilter.unselectedTextColor
+      type: string
+      required: false
+      description: Text color for unselected filter
+
+    - field: foldersPanelWidth
+      type: number
+      required: false
+      description: Width of the folders panel in px
+
+    - field: buttons.[name].iconSvg
+      type: string
+      required: false
+      description: Icon for scenario button (inline SVG)
+
+    - field: buttons.[name].type
+      type: string
+      required: false
+      description: Button type (e.g. "primary", "text")
+
+    - field: buttons.[name].padding
+      type: string
+      required: false
+      description: CSS padding for button
+
+    - field: buttons.[name].transparent
+      type: boolean
+      required: false
+      description: Transparent background flag for button
+
+    - field: reverseMainActionBtnsOrder
+      type: boolean
+      required: false
+      description: Reverse order of main action buttons
+
+    - field: paddingTop
+      type: string
+      required: false
+      description: Padding from the top of scenarios area
+
+    - field: scenariosTable.scenarioIconBgColor
+      type: string
+      required: false
+      description: Background color of scenario icons
+
+    - field: scenariosTable.sortArrow.activeColor
+      type: string
+      required: false
+      description: Color of active sort arrow
+
+    - field: scenariosTable.sortArrow.inactiveColor
+      type: string
+      required: false
+      description: Color of inactive sort arrow
+
+    - field: searchInput.borderRadius
+      type: string
+      required: false
+      description: Border radius for search input
+
+  scenario:
+    - field: showGrid
+      type: boolean
+      required: false
+      description: Show grid background in scenario editor
+
+    - field: nodeTypeList.requestNewAppURL
+      type: string
+      required: false
+      description: URL for requesting new app integration
+
+    - field: nodeTypeList.categoriesSideBar.backgroundColor
+      type: string
+      required: false
+      description: Sidebar background color in node type list
+
+    - field: nodeTypeList.nodeTypeListNodeBackgroungSvg
+      type: string
+      required: false
+      description: Custom background SVG for node type list
+
+    - field: nodeTypeList.listTitleFont.[*]
+      type: string
+      required: false
+      description: Font properties for list titles
+
+    - field: nodeTypeList.nodeTitleFont.[*]
+      type: string
+      required: false
+      description: Font properties for node titles
+
+    - field: nodeTypeList.nodeDescriptionFont.[*]
+      type: string
+      required: false
+      description: Font properties for node descriptions
+
+    - field: actionBlock.buttons.[name].iconSvg
+      type: string
+      required: false
+      description: Inline SVG icon for action button
+
+    - field: actionBlock.buttons.[name].type
+      type: string
+      required: false
+      description: Button type (primary, text, etc.)
+
+    - field: actionBlock.buttons.[name].padding
+      type: string
+      required: false
+      description: CSS padding for action button
+
+    - field: actionBlock.buttons.[name].transparent
+      type: boolean
+      required: false
+      description: Transparent background flag for action button
+
+    - field: actionBlock.mainLineStyle.[*]
+      type: string | number
+      required: false
+      description: CSS style settings for main action line
+
+    - field: actionBlock.activeSwitchLabelFont.[*]
+      type: string
+      required: false
+      description: Font properties for active switch labels
+
+    - field: nodeDataPanel.operators.textColor
+      type: string
+      required: false
+      description: Text color for operators in node data panel
+
+    - field: nodeDataPanel.operators.backgroundColor
+      type: string
+      required: false
+      description: Background color for operators in node data panel
+
+    - field: nodeDataPanel.buttons.newAuthorization.[*]
+      type: string | boolean
+      required: false
+      description: Button properties for "New Authorization" action
+
+    - field: scenarioNodeBackgroundSvg
+      type: string
+      required: false
+      description: Background SVG for scenario nodes
+
+    - field: templates.buttons.cloneThisTemplate.iconSvg
+      type: string
+      required: false
+      description: Icon for cloninig scenario button (inline SVG)
+
+    - field: templates.buttons.cloneThisTemplate.type
+      type: string
+      required: false
+      description: Button type (e.g. "primary", "text")
+
+    - field: templates.buttons.cloneThisTemplate.padding
+      type: string
+      required: false
+      description: CSS padding for button
+
+    - field: templates.buttons.cloneThisTemplate.transparent
+      type: string
+      required: false
+      description: Transparent background flag for button
+
+  main:
+    - field: hideSideMenu
+      type: boolean
+      required: false
+      description: Hide main side navigation menu
+
+    - field: documentationURL
+      type: string
+      required: false
+      description: Custom documentation link
+
+  theme:
+    - field: font.fontFamily
+      type: string
+      required: false
+      description: Base font family
+
+    - field: font.load.googleFontFamily
+      type: string
+      required: false
+      description: Google Font family name to load
+
+    - field: font.load.custom.url
+      type: string
+      required: false
+      description: Custom font URL
+
+    - field: font.load.custom.format
+      type: string
+      required: false
+      description: Custom font format (woff2, ttf, etc.)
+
+    - field: primaryColor
+      type: string
+      required: false
+      description: Primary accent color
+
+    - field: button.[type].[state].[*]
+      type: string
+      required: false
+      description: Button styles per type and state
+
+    - field: input.borderRadius
+      type: string
+      required: false
+      description: Border radius for input fields
+
+    - field: switch.[*]
+      type: string | number
+      required: false
+      description: Switch element style properties
+
+    - field: scenario.backgroundColor
+      type: string
+      required: false
+      description: Background color of scenario area
+
+    - field: scenario.nodeTypeList.nodeBackgroundSize
+      type: string
+      required: false
+      description: Size of node background image in scenario
+
+    - field: scenario.historyDrawer.headerBgColor
+      type: string
+      required: false
+      description: Background color of history drawer header
+
+    - field: scenario.historyDrawer.alert.[*]
+      type: string
+      required: false
+      description: Alert styles in history drawer
+
+    - field: scenario.unsavedChangesModal.mainActionBtnColor
+      type: string
+      required: false
+      description: Color of main action button in unsaved changes modal
+
+    - field: scenario.nodeSettings.headerBgColor
+      type: string
+      required: false
+      description: Background color of node settings popup header
+
+    - field: scenario.nodeSettings.bodyBgColor
+      type: string
+      required: false
+      description: Background color of node settings popup body
+
+    - field: scenario.nodeSettings.footerBgColor
+      type: string
+      required: false
+      description: Background color of node settings popup footer
+
+    - field: templates.tabBtnsColor
+      type: string
+      required: false
+      description: Color of selected tab
+
+  translations:
+    - field: currentLng
+      type: string
+      required: false
+      description: Current language code (e.g. "en", "ru")
+
+    - field: overrides.[lng].[key]
+      type: string
+      required: false
+      description: Override translation string for specific language
+
+navigation:
+  - field: navigation.handler
+    type:
+      (data: { route: string }) => void
+    required: false
+    description: Navigation event handler inside the iframe. This function will be called each time the application route changes
+```
+
+### navigate
+
+This method allows navigation within the iframe. For example:
+
+```jsx
+LatenodeSDK.navigate({ to: '/scenarios' });
+```
+
+### cleanup
+
+The SDK has side effects in its operation. To properly finalize work with the `iframe`, it is recommended to call the cleanup method, which will remove all registered callbacks in `window`, for example:
+
+```jsx
+LatenodeSDK.cleanup();
+```
