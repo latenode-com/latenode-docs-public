@@ -41,7 +41,7 @@ Each node connected to MCP Trigger becomes a tool. Configure it in the first con
 
 ![Tool configuration](./mcp-nodes/image_04.png)
 
-> ?? Important: Without **Tool Name**, the tool won't be visible to AI clients.
+> **Important:** Without **Tool Name**, the tool won't be visible to AI clients.
 
 ### Input parameters
 
@@ -51,11 +51,11 @@ Parameters define what data AI will pass when calling the tool.
 | --- | --- |
 | **Key** | Parameter name (e.g., `email`, `user_name`) |
 | **Type** | Select `fromMCP` for AI-fillable parameters |
-| **Description** | Explanation for AI � what data to pass |
+| **Description** | Explanation for AI — what data to pass |
 
 ![Input parameters](./mcp-nodes/image_05.png)
 
-**Example � lead creation tool parameters:**
+**Example — lead creation tool parameters:**
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -84,7 +84,7 @@ When connecting nodes to MCP Trigger, a **route filter** is created automaticall
 
 ![Automatic routing filter](./mcp-nodes/image_08.png)
 
-> ?? The filter is auto-generated and non-editable.
+> **Note:** The filter is auto-generated and non-editable.
 
 ## MCP Response
 
@@ -146,14 +146,14 @@ return {
 
 Write clear descriptions so AI understands when and how to use your tools.
 
-**? Good:**
+**Good example:**
 
 ```plain
 Creates a task in Asana. Accepts task title and optional deadline.
 Returns created task ID and link.
 ```
 
-**? Bad:**
+**Poor example:**
 
 ```plain
 Creates task
@@ -173,7 +173,7 @@ Creates task
 
 ## Limitations
 
-- MCP uses SSE (Server-Sent Events) � requires stable connection
+- MCP uses SSE (Server-Sent Events) — requires stable connection
 - Tool execution time is limited by scenario timeout
 - Binary data (files, images) requires additional handling
 

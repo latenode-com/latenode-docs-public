@@ -1,14 +1,11 @@
 {
   "title": "AI Agents",
   "pages": [
-    "ai-agent-node",
-    "writing-effective-instructions-prompting-guide",
-    "ai-agent-examples",
-    "tool-design-for-ai-agents",
-    "multiagent-systems",
-    "guardrails-for-ai-agents",
-    "think-and-plan-tools",
     "agent-design-foundations",
-    "custom-llm-connection"
+    "ai-agent-node",
+    "tool-design-for-ai-agents",
+    "think-and-plan-tools",
+    "custom-llm-connection",
+    "guides-and-examples"
   ]
 }

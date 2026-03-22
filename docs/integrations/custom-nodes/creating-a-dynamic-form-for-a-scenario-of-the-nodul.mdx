@@ -33,8 +33,8 @@ Let's create a custom node with dynamic field rendering. To do this, you need to
 
 ![Body Type Param](./creating-a-dynamic-form-for-a-scenario-of-the-nodul/untitled_2.png)
 
-- Add a node to perform the scenario function, for example, an�**Java Script**�node to send requests to an external application.
-- Add a�**NodulOutput**�node to receive the response from the Nodul type scenario.
+- Add a node to perform the scenario function, for example, an — **Java Script** — node to send requests to an external application.
+- Add a — **NodulOutput** — node to receive the response from the Nodul type scenario.
 
 2. Save and activate the scenario of type **Nodul**;
 
@@ -42,8 +42,8 @@ Let's create a custom node with dynamic field rendering. To do this, you need to
 
 ![QuickLook](./creating-a-dynamic-form-for-a-scenario-of-the-nodul/quicklook_wf6xcmuw0b.png)
 
-- Add a�**Nodul Form Input**�node to retrieve parameters from the **Nodul** type scenario form;
-- Add a�**JavaScript**�node with the following code:
+- Add a — **Nodul Form Input** — node to retrieve parameters from the **Nodul** type scenario form;
+- Add a — **JavaScript** — node with the following code:
 
 ```jsx
 export default async function run({execution_id, input, data}) {
@@ -71,8 +71,8 @@ export default async function run({execution_id, input, data}) {
 }
 ```
 
-- Create a connection with the condition `{{4.changedKeys.bodytype = true and 4.formValues.bodytype.value.select = "raw"}}` to trigger the corresponding branch of the scenario when the "Raw" value is selected in the�**Body type**�parameter;
-- Add another�**JavaScript**�node with the following code:
+- Create a connection with the condition `{{4.changedKeys.bodytype = true and 4.formValues.bodytype.value.select = "raw"}}` to trigger the corresponding branch of the scenario when the "Raw" value is selected in the — **Body type** — parameter;
+- Add another — **JavaScript** — node with the following code:
 
 ```jsx
 export default async function run({execution_id, input, data}) {
@@ -92,9 +92,9 @@ export default async function run({execution_id, input, data}) {
 }
 ```
 
-- Add a�**Nodul Form Output**�node to display form parameters after selecting "Raw" in the�**Body type**�parameter**;**
-- Create a connection with the condition `{{4.changedKeys.bodytype = true and (4.formValues.bodytype.value.select = "form-data" or 4.formValues.bodytype.value.select = "x-www-form-urlencoded")}}` to trigger the corresponding branch of the scenario when "form-data" or "x-www-form-urlencoded" values are selected in the�**Body type**�parameter;
-- Add another�**JavaScript**�node with the following code:
+- Add a — **Nodul Form Output** — node to display form parameters after selecting "Raw" in the — **Body type** — parameter**;**
+- Create a connection with the condition `{{4.changedKeys.bodytype = true and (4.formValues.bodytype.value.select = "form-data" or 4.formValues.bodytype.value.select = "x-www-form-urlencoded")}}` to trigger the corresponding branch of the scenario when "form-data" or "x-www-form-urlencoded" values are selected in the — **Body type** — parameter;
+- Add another — **JavaScript** — node with the following code:
 
 ```
 export default async function run({execution_id, input, data}) {
@@ -112,7 +112,7 @@ export default async function run({execution_id, input, data}) {
 }
 ```
 
-- Add a�**Nodul Form Output**�node to display form parameters after selecting "Raw" in the�**Body type**�parameter**.**
+- Add a — **Nodul Form Output** — node to display form parameters after selecting "Raw" in the — **Body type** — parameter**.**
 
 ## **The result of auxiliary scenarios**
 

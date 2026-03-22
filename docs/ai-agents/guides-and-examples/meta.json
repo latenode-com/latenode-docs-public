@@ -1,0 +1,9 @@
+{
+  "title": "Guides & examples",
+  "pages": [
+    "writing-effective-instructions-prompting-guide",
+    "ai-agent-examples",
+    "multiagent-systems",
+    "guardrails-for-ai-agents"
+  ]
+}
