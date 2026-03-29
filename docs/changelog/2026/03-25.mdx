@@ -1,0 +1,123 @@
+---
+title: March 25 - Platform Updates
+description: Updates from March 25, 2026
+lastUpdated: '2026-03-25'
+---
+import { Sparkles, Bug, Puzzle, Zap } from 'lucide-react';
+
+# March 25 - Platform Updates
+
+<Callout type="info" title="Highlights">
+- Fast webhook response mode: return replies in ~100 ms without waiting for scenario completion
+- 40+ new app integrations including Ahrefs, Algolia, PostHog, LaunchDarkly
+- New OpenAI GPT-5.3/5.4 models and Google Veo 3.1
+- Multiple MCP stability fixes: deploy, copy, response handling
+- Google Drive migrated to new architecture
+</Callout>
+
+<div className="flex items-center gap-2 mb-3">
+  <Sparkles className="w-5 h-5" />
+  <h3 className="!mt-0 mb-0">Features</h3>
+</div>
+
+**Fast webhook response**
+
+For [**Trigger on Webhook**](/integrations/core-nodes/trigger-on-webhook), you can enable fast response mode: the query parameter `__ln.fast=1` returns a reply immediately without waiting for the scenario to finish.
+
+- Configure response **body**, **status**, and **headers** via GET parameters: `__ln.resp.body`, `__ln.resp.status`, `__ln.resp.header.*`
+- Response time for asynchronous scenarios is reduced to roughly **~100 ms**
+
+<div className="flex items-center gap-2 mb-3">
+  <Zap className="w-5 h-5" />
+  <h3 className="!mt-0 mb-0">Performance & UX</h3>
+</div>
+
+- Fixed freezes when creating a scenario with **AI Builder**
+- The node settings panel no longer closes when clicking outside it - only via the close control or when moving a node
+
+<div className="flex items-center gap-2 mb-3">
+  <Puzzle className="w-5 h-5" />
+  <h3 className="!mt-0 mb-0">New Apps & Updates</h3>
+</div>
+
+**New apps:**
+
+- [**Zoho Meeting**](https://www.zoho.com/meeting/) - video conferencing and webinars
+- [**Prodpad**](https://www.prodpad.com/) - product management and roadmapping
+- [**TinyPNG**](https://tinypng.com/) - image compression API
+- [**Axesso**](https://axesso.de/) - e-commerce product and marketplace data API
+- [**Posthog**](https://posthog.com/) - product analytics and feature flags
+- [**Onfleet**](https://onfleet.com/) - last-mile delivery routing and dispatch
+- [**Recurly**](https://recurly.com/) - subscription billing and revenue management
+- [**Planyo Online Booking**](https://www.planyo.com/) - online reservations and scheduling
+- [**Wakatime**](https://wakatime.com/) - automatic time tracking for developers
+- [**Retable**](https://retable.io/) - spreadsheet-style database and collaboration
+- [**Curated**](https://curated.co/) - curated newsletter publishing
+- [**LaunchDarkly**](https://launchdarkly.com/) - feature flags and progressive delivery
+- [**Intuiface**](https://www.intuiface.com/) - no-code interactive digital experiences
+- [**Agility CMS**](https://agilitycms.com/) - headless content management
+- [**Airtop**](https://www.airtop.ai/) - cloud browser automation for AI workflows
+- [**Akismet**](https://akismet.com/) - spam detection and filtering
+- [**Algolia**](https://www.algolia.com/) - search and discovery API
+- [**Agiled**](https://agiled.app/) - business management and invoicing
+- [**Addressfinder**](https://www.addressfinder.com/) - address validation and autocomplete
+- [**Afosto**](https://afosto.com/) - e-commerce platform
+- [**Adyntel**](https://www.adyntel.com/) - advertising and marketing intelligence
+- [**Accuweather**](https://developer.accuweather.com/) - weather forecasts and data API
+- [**Affinda**](https://www.affinda.com/) - document and resume parsing AI
+- [**Neuronwriter**](https://neuronwriter.com/) - SEO content research and drafting
+- [**Airweave**](https://www.airweave.ai/) - RAG and embeddings platform for AI apps
+- [**Are.na**](https://www.are.na/) - visual collections and research boards
+- [**Agentset**](https://www.agentset.ai/) - tooling and datasets for AI agents
+- [**DashaMail (RU)**](https://dashamail.ru/) - email marketing platform (Russia)
+- [**4dem**](https://www.4dem.it/) - marketing automation and campaigns
+- [**Baremetrics**](https://baremetrics.com/) - subscription metrics and analytics for SaaS
+- [**Ably**](https://ably.com/) - realtime messaging and pub/sub infrastructure
+- [**Abyssale**](https://abyssale.com/) - dynamic image and banner generation
+- [**Zite**](https://zite.com/) - AI-assisted content workflows
+- [**Actitime**](https://www.actitime.com/) - project time tracking for teams
+- [**Addresszen**](https://addresszen.com/) - address verification and geocoding
+- [**Adrapid**](https://adrapid.com/) - creative production automation
+- [**CAMB.AI**](https://www.camb.ai/) - AI dubbing and multilingual video
+- [**Ahrefs**](https://ahrefs.com/) - SEO tools, keywords, and backlinks
+- [**Caraer**](https://caraer.com/) - recruiting and candidate engagement
+- [**Printful**](https://www.printful.com/) - print-on-demand and order fulfillment
+- [**Klipfolio**](https://www.klipfolio.com/) - dashboards and KPI reporting
+
+**AI model updates:**
+
+- **OpenAI ChatGPT** - added GPT-5.3, GPT-5.4, GPT-5.4 Pro, GPT-5.4 Mini, GPT-5.4 Nano
+- **Google Veo** - added Veo 3.1
+
+**Integration updates:**
+
+- **Google Drive** - migrated to the new architecture
+- **Twitch** - added triggers
+
+<div className="flex items-center gap-2 mb-3">
+  <Bug className="w-5 h-5" />
+  <h3 className="!mt-0 mb-0">Bug Fixes</h3>
+</div>
+
+**MCP** - fixes for known issues:
+
+- Error when deploying an MCP scenario
+- Error when copying an MCP template
+- MCP now correctly recognizes **string array** fields
+- Fixed **fromMCP** behavior inside **MCP Response**
+- Restart from history works correctly again
+- Fixed clients not receiving a response when the scenario completed successfully
+
+**Integrations:**
+
+- **AI GPT Router (OpenRouter)** - restored Perplexity models in the model selector
+- **Google Calendar** - fixed **New or Modified Event** trigger
+- **LinkedIn** - fixed **New Post Comment** trigger
+- **Postgres** - columns with **DEFAULT** values are no longer required in the form
+- **Jira** - each trigger iteration now returns a separate output
+- **Microsoft Power BI** - fixed **400** error in **Create Dataset**
+- **Tavily** - fixed handling when images fail to download
+- **Data Enrichment** - fixed **Run Waterfall Enrichment Task**
+- **NocoDB** - fixed writes when **null** is passed in parameters
+- **Slack** - fixed access error for archived channels
+- Fixed deploy error for a trigger when changing the event selector
