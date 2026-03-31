@@ -83,7 +83,8 @@ Each role defines what actions a user can perform.
 | **Admin** (`role_id`: 1) | Has full access to the space and all its configurations. Can create, edit, and delete scenarios, manage users, and change space settings. Only **one admin** can exist per space. Created automatically when a new space is created. |
 | **Manager** (`role_id`: 2) | Has almost the same permissions as the Admin but **cannot add or remove users** from the space. |
 | **No-code** (`role_id`: 3) | Can create, edit, delete, activate/deactivate, and move scenarios between folders. Does **not** have access to folder, user or space management. |
-| Read only (`role_id`: 4) | Can view and run scenarios. Does **not** have access to folder, user or space management. |
+| **Read only** (`role_id`: 4) | Can view and run scenarios. Does **not** have access to folder, user or space management. |
+| **Credential only** (`role_id`: 5) | Can view and run scenarios; modify nodes with authorization; deploy, activate, move, rename, and copy scenarios; create, update, and move folders. Does **not** have access to user or space management. |
 
 Creating a JWT token is sufficient to register or authorize a user on the Latenode platform. Use this token in the [`configure`](https://www.notion.so/Installing-the-embedded-SDK-1b657d45a06780a8af8bca11990b981c?pvs=21) sdk method. If the user is new, they will be automatically registered and authorized. 
 
