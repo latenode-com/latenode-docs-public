@@ -1,0 +1,271 @@
+---
+title: Gmail
+description: Send and receive mail, manage drafts and labels, and trigger scenarios from Gmail events.
+lastUpdated: '2026-03-31'
+---
+
+# Gmail
+
+![Gmail node overview](./gmail/node-overview.png)
+
+Gmail nodes send and receive email, work with drafts and labels, and start runs when something happens in Gmail or Google Workspace.
+
+## Connection
+
+Every Gmail module needs a Google connection. Create it once and reuse it.
+
+### First-time setup
+
+When **Connection** is empty:
+
+![Empty Connection field](./gmail/connection-empty.png)
+
+Click **Create an authorization** and pick a type.
+
+### Connection types
+
+![Gmail connection types](./gmail/connection-types.png)
+
+- **Gmail OAuth 2.0** - Sign in with Google. Default for most cases.
+- **Personal App Gmail** - Your Google Cloud OAuth client (Client ID / Secret). Use for your own quotas or policies.
+
+<Callout type="info" title="Personal App in Google Cloud">
+  Step-by-step: [Google Services (Personal Account)](/integrations/authorizations/app-authorization-instructions/google-services).
+</Callout>
+
+### Authorization
+
+<Steps>
+  <Step>
+
+### Choose Gmail OAuth 2.0
+
+Select **Gmail OAuth 2.0** in the dialog.
+
+  </Step>
+  <Step>
+
+### Name and save
+
+Enter a connection name and click **Save**. The Google sign-in window opens.
+
+![Google sign-in](./gmail/oauth-sign-in.png)
+
+  </Step>
+  <Step>
+
+### Sign in and allow
+
+Pick the account and grant all requested permissions.
+
+  </Step>
+  <Step>
+
+### Confirm in the node
+
+When the window closes, the connection appears in **Connection**.
+
+  </Step>
+</Steps>
+
+### Reusing a connection
+
+Open **Connection**, click **Use** on an existing one, or **New authorization** to add another.
+
+## Triggers
+
+<Accordions type="multiple">
+<Accordion title="New Email">
+
+Runs when a new message arrives.
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Search Query | Optional Gmail search (e.g. `from:amy OR from:david`) |
+| Labels | Optional. All selected labels must be on the message |
+| Maximum Items | Max messages per trigger run |
+
+</Accordion>
+<Accordion title="New Attachment">
+
+Like New Email but only when the message has attachments.
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Search Query | Optional |
+| Labels | Optional |
+| Maximum Items | Max per run |
+
+</Accordion>
+<Accordion title="New Label">
+
+Runs when a new label is created.
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+
+</Accordion>
+<Accordion title="New Labeled Email">
+
+Runs when a label is applied to a message.
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Label | Label to watch |
+| Events Limit | Max events per run (up to 500) |
+
+</Accordion>
+<Accordion title="New Starred Email">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Events Limit | Max per run (up to 500) |
+
+</Accordion>
+<Accordion title="New Thread">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Label | Optional filter by label |
+| Events Limit | Max per run (up to 500) |
+
+</Accordion>
+</Accordions>
+
+## Actions
+
+<Accordions type="multiple">
+<Accordion title="Send Email">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| To | One address or array |
+| Subject | Subject line |
+| Email Body | Plain text or HTML |
+| Body Type | `Plaintext` or `html` |
+| Cc / Bcc | Optional |
+| From Name | Display name |
+| Message ID To Reply | Optional thread reply id |
+| Attachments | Map: filename (with extension) → direct download URL |
+
+</Accordion>
+<Accordion title="Create Draft">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Subject | Subject |
+| Email Body | Body |
+| Body Type | `Plaintext` or `html` |
+| To / Cc / Bcc | Optional |
+| From Name / Reply To | Optional |
+| Attachments | Optional |
+
+</Accordion>
+<Accordion title="Create Draft Reply">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Message ID To Reply | Parent message id |
+| Subject / Email Body / Body Type | Same as draft |
+| To / Cc / Bcc / From Name / Reply To | Optional |
+| Attachments | Optional |
+
+</Accordion>
+<Accordion title="Reply To Email">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Message ID To Reply | Parent message |
+| Subject / Email Body / Body Type | Reply content |
+| To | Required |
+| Cc / Bcc / From Name / Reply To | Optional |
+| Attachments | Optional |
+
+</Accordion>
+<Accordion title="Create Label">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Name | Label name; use `/` for nested labels |
+
+</Accordion>
+<Accordion title="List Labels">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+
+</Accordion>
+<Accordion title="Add Labels To Email">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Message ID | Message |
+| Label ID | Label(s) to add |
+
+</Accordion>
+<Accordion title="Remove Labels From Email">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Message ID | Message |
+| Label ID | Label(s) to remove |
+
+</Accordion>
+<Accordion title="Find Email">
+
+Up to 300 results.
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Label ID | Optional |
+| Search Query | Optional Gmail operators |
+| Include Spam And Trash | Include those folders |
+
+</Accordion>
+<Accordion title="Get Attachment">
+
+| Field | Description |
+| --- | --- |
+| Connection | Gmail connection |
+| Message ID | Message |
+| Attachments | Optional JSON array `[{"attachmentId","extension","filename"}]`; if empty, all attachments |
+
+</Accordion>
+</Accordions>
+
+## Troubleshooting
+
+Built-in **Gmail OAuth 2.0** uses Latenode's Google project and should work without extra setup.
+
+### Insufficient permissions / access denied
+
+OAuth succeeded but nodes fail: some scopes were unchecked on Google's screen. Delete the connection, reconnect, and leave all requested permissions enabled before **Allow**.
+
+### Error 400: Connection expired (Personal App)
+
+**Testing** apps in Google Cloud get short-lived tokens (about 7 days). Reauthorize weekly or move the project to **In production** (may require verification).
+
+For Personal App setup: [Google Services (Personal Account)](/integrations/authorizations/app-authorization-instructions/google-services).
+
+### Error 403: Access denied right after auth
+
+Add your Google account under OAuth consent screen → **Test users** in Google Cloud.
+
+### Error 403: Gmail API not configured
+
+Enable **Gmail API** in Google Cloud → APIs & Services.

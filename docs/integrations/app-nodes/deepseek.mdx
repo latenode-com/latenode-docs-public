@@ -1,0 +1,78 @@
+---
+title: DeepSeek
+description: Use DeepSeek language models in Latenode scenarios with built-in PnP pricing.
+lastUpdated: '2026-03-31'
+---
+
+# DeepSeek
+
+![DeepSeek node overview](./deepseek/node-overview.png)
+
+The **DeepSeek** node runs DeepSeek models (including reasoning R1 and general V3) inside your scenarios without an API key.
+
+This is a **PnP (Plug and Play)** node: no connection or authorization. Cost is billed in **PnP tokens** from actual token usage (1 PnP token = $1). Prices for specific models are listed at the top of the node settings panel.
+
+## Models
+
+| Model | Best for |
+| --- | --- |
+| DeepSeek Chat (V3.1) | General chat. Default |
+| DeepSeek Chat (V3) | General chat, previous generation |
+| DeepSeek Reasoner (R1) | Reasoning, math, step-by-step analysis |
+
+## Getting structured output
+
+DeepSeek uses a **Response Format** field instead of a toggle. Set it to `json_object` for JSON mode, and state in the prompt that the answer must be JSON (for example: "Return the result in JSON format").
+
+Example prompt:
+
+```
+Extract the person's name and email from the following text and return the result as JSON:
+
+{input_text}
+
+Return format:
+{"name": "...", "email": "..."}
+```
+
+## Fields
+
+<Accordions type="multiple">
+<Accordion title="Basic">
+
+| Field | Description |
+| --- | --- |
+| Model | DeepSeek model. Default: DeepSeek Chat (V3.1) |
+| User Prompt | Message to send. At least one of **User Prompt** or **Dialogue History JSON** is required |
+| Dialogue History JSON | Optional history. Roles: `system`, `user`, `assistant`, `tool` (must alternate) |
+
+**Dialogue History JSON** example:
+
+```json
+[
+  { "role": "user", "content": "Hello!" },
+  { "role": "assistant", "content": "Hi! How can I help you?" }
+]
+```
+
+</Accordion>
+<Accordion title="Generation">
+
+| Field | Description |
+| --- | --- |
+| Temperature | 0 to 2. Higher = more random. Adjust **Temperature** or **Top P**, not both. Default: 1.0 |
+| Top P | 0 to 1. Nucleus sampling. Default: 1 |
+| Max Tokens | 1 to 8192. Total input + output is limited by context |
+| Stop | Optional. Up to 16 stop sequences |
+| Presence Penalty | -2.0 to 2.0. Default: 0 |
+| Frequency Penalty | -2.0 to 2.0. Default: 0 |
+
+</Accordion>
+<Accordion title="Output">
+
+| Field | Description |
+| --- | --- |
+| Response Format | `Text` (default) or `json_object`. For `json_object`, the model returns JSON; still describe JSON in the prompt |
+
+</Accordion>
+</Accordions>

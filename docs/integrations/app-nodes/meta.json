@@ -1,8 +1,17 @@
 {
   "title": "App Nodes",
   "pages": [
-    "list-of-app-nodes",
     "setting-up-app-nodes",
+    "ai-gpt-router-openrouter",
+    "anthropic-claude",
+    "chatgpt",
+    "custom-llm-connection",
+    "deepseek",
+    "discord",
+    "gmail",
+    "google-drive",
+    "google-sheets",
+    "telegram-bot",
     "personal-accounts-troubleshooting"
   ]
 }

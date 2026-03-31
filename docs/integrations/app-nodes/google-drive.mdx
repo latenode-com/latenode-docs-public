@@ -1,0 +1,381 @@
+---
+title: Google Drive
+description: Upload, download, share, and organize Drive files and folders from Latenode scenarios.
+lastUpdated: '2026-03-31'
+---
+
+# Google Drive
+
+![Google Drive node overview](./google-drive/node-overview.png)
+
+Google Drive nodes manage files and folders (upload, download, copy, move, share) and can start scenarios when Drive changes.
+
+## Connection
+
+### First-time setup
+
+![Empty Connection](./google-drive/connection-empty.png)
+
+Click **Create an authorization** and choose a connection type.
+
+### Connection types
+
+![Drive connection types](./google-drive/connection-types.png)
+
+- **Google Drive OAuth 2.0** - Recommended.
+- **Personal App Google Drive** - Your OAuth client in Google Cloud.
+
+<Callout type="info" title="Personal App setup">
+  [Google Services (Personal Account)](/integrations/authorizations/app-authorization-instructions/google-services).
+</Callout>
+
+### Authorization
+
+<Steps>
+  <Step>
+
+### Select Google Drive OAuth 2.0
+
+  </Step>
+  <Step>
+
+### Name the connection and save
+
+![Google sign-in](./google-drive/oauth-sign-in.png)
+
+  </Step>
+  <Step>
+
+### Sign in, grant access, confirm
+
+The new connection appears in **Connection** when the window closes.
+
+  </Step>
+</Steps>
+
+### Reusing a connection
+
+Use **Use** in the **Connection** dropdown or **New authorization**.
+
+## Triggers
+
+All listed Drive triggers are **instant** (no polling delay).
+
+<Accordions type="multiple">
+<Accordion title="Changed File or Folder (Instant)">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive to watch |
+| Drive Item IDs | File or folder ids |
+| Change Types | Optional filter by change type |
+
+</Accordion>
+<Accordion title="New Notification Watch Changes (Instant)">
+
+Drive-wide changes.
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+
+</Accordion>
+<Accordion title="New Notification Watch Files (Instant)">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Drive Item IDs | File ids |
+
+</Accordion>
+<Accordion title="New or Modified File (Instant)">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Watch Type | New only, modified only, or both |
+| Watch for Items in Folder IDs | Optional folders |
+| Drive Item MIME Type | Optional type filter. See [Google Drive MIME types](https://developers.google.com/drive/api/guides/mime-types) |
+
+</Accordion>
+<Accordion title="New or Updated Comments (Instant)">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Drive Item IDs | Files to watch |
+
+</Accordion>
+</Accordions>
+
+## Actions
+
+<Accordions type="multiple">
+<Accordion title="Files: Copy File">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive with the source file |
+| File | File to copy |
+
+</Accordion>
+<Accordion title="Files: Create New File">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Target drive |
+| Parent Folder | Optional folder |
+| File URL | Or **File Path** (one required) |
+| File Path | Prior node content, e.g. `1.body.files.[0].content` |
+| Name / Mime Type / Description | Optional |
+| Supports All Drives | `true` for shared drives |
+| Starred / OCR Language / Keep Revision Forever / Use Content As Indexable Text | Optional |
+| Writers Can Share / Copy Requires Writer Permission / Ignore Default Visibility | Optional |
+| Shortcut Details Target ID | Optional shortcut target |
+
+</Accordion>
+<Accordion title="Files: Create New File From Template">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive with template |
+| File | Template document |
+| Mode | Google Doc, PDF, or both |
+| Parent Folder / Name | Optional |
+| Replace Text Placeholders | Optional `{{placeholder}}` map |
+
+</Accordion>
+<Accordion title="Files: Create New File From Text">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Folder / Name / Content | Optional |
+
+</Accordion>
+<Accordion title="Files: Download File">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| File ID | File |
+| Conversion Format | Optional export format for Workspace files |
+
+</Accordion>
+<Accordion title="Files: Find File">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Search Name | Optional |
+
+</Accordion>
+<Accordion title="Files: List Files">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Folder | Optional folder |
+| Fields / Filter Text / Include Trashed Files | Optional |
+
+</Accordion>
+<Accordion title="Files: Move File">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| File | File |
+| Folder | Destination folder |
+
+</Accordion>
+<Accordion title="Files: Move File to Trash">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| File or Folder | Item |
+
+</Accordion>
+<Accordion title="Files: Replace File">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| File | File |
+| File URL or File Path | New content (one required) |
+| Name / Mime Type | Optional |
+
+</Accordion>
+<Accordion title="Files: Update File">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| File | File |
+| File URL / File Path / Name / Mime Type | Optional |
+| Add Parents / Remove Parents | Optional |
+| Keep Revision Forever / OCR Language / Use Content As Indexable Text | Optional |
+| Advanced Options | Extra metadata. See [Files: update](https://developers.google.com/drive/api/v3/reference/files/update#request-body) |
+
+</Accordion>
+<Accordion title="Files: Upload File">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Folder | Optional |
+| File URL or File Path | One required |
+| Name / Mime Type | Optional |
+
+</Accordion>
+<Accordion title="Folders: Create Folder">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Name | Folder name |
+| Folder | Optional parent |
+| Create Only If Filename Is Unique | Optional |
+
+</Accordion>
+<Accordion title="Folders: Find Folder">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive | Defaults to My Drive |
+| Search Name | Optional |
+| Include Trashed | Optional |
+
+</Accordion>
+<Accordion title="Folders: Get Folder ID for Path">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Path | Path with `/`, e.g. `a/b/c` |
+
+</Accordion>
+<Accordion title="Sharing: Add File Sharing Preference">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| File | File |
+| Role | Reader, Commenter, Writer, Owner |
+| Type | Anyone, User, Group, Domain |
+| Email Address / Domain | When required |
+
+</Accordion>
+<Accordion title="Sharing: Get Shared Link">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Drive Item ID | File or folder |
+
+</Accordion>
+<Accordion title="Sharing: Revoke File or Folder Access">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Drive Item ID | Item |
+| Permission ID | Permission to remove |
+
+</Accordion>
+<Accordion title="Sharing: Share File or Folder Permissions">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Drive Item ID | Item |
+| Role | Reader, Commenter, Writer, File Organizer, Organizer, Owner |
+| Type | User, Group, Domain, Anyone |
+| Email / Expiration Time / Allow File Discovery | Optional |
+
+</Accordion>
+<Accordion title="Sharing: Update File or Folder Access">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Drive Item ID | Item |
+| Permission ID | Permission |
+| New Role | New role |
+
+</Accordion>
+<Accordion title="Shared drives: Create Shared Drive">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Name | Shared drive name |
+
+</Accordion>
+<Accordion title="Shared drives: Get Shared Drive">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Shared drive id |
+
+</Accordion>
+<Accordion title="Shared drives: Search for Shared Drives">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Search Query | Query string |
+| Use Domain Admin Access | Optional |
+
+</Accordion>
+<Accordion title="Utilities: Convert Excel to Sheets">
+
+| Field | Description |
+| --- | --- |
+| Connection | Drive connection |
+| Drive ID | Drive |
+| Excel File ID | Source Excel |
+| New Google Sheets Name / Parent Folder ID | Optional |
+
+</Accordion>
+</Accordions>
+
+## Troubleshooting
+
+### Insufficient permissions / access denied
+
+Reconnect and approve **all** requested Google scopes.
+
+### Connection expired (Personal App)
+
+**Testing** projects: about 7-day tokens. Reauthorize or publish to **In production**.
+
+<Callout type="info" title="Personal App">
+  [Google Services (Personal Account)](/integrations/authorizations/app-authorization-instructions/google-services).
+</Callout>
