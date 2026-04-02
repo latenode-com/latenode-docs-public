@@ -1,7 +1,7 @@
 ---
 title: Google Drive
 description: Upload, download, share, and organize Drive files and folders from Latenode scenarios.
-lastUpdated: '2026-03-31'
+lastUpdated: '2026-04-01'
 ---
 
 # Google Drive
@@ -61,75 +61,91 @@ Use **Use** in the **Connection** dropdown or **New authorization**.
 
 All listed Drive triggers are **instant** (no polling delay).
 
+**Connection** is your Google account dropdown. **Drive ID**, **File**, and **Folder** fields use searchable pickers with paging ([how lists work](/integrations/app-nodes/setting-up-app-nodes)). Switch a field to **Map** when you already have a drive or item id from another node.
+
 <Accordions type="multiple">
 <Accordion title="Changed File or Folder (Instant)">
 
+Fires when watched files or folders change. **Change Types** narrows which change events count.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive to watch |
-| Drive Item IDs | File or folder ids |
-| Change Types | Optional filter by change type |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Drive to watch. **Select** or **Map** the drive id. |
+| Drive Item IDs | Files or folders to watch. Use the picker, or **Map** one or more item ids. |
+| Change Types | Optional filter by change type. |
 
 </Accordion>
 <Accordion title="New Notification Watch Changes (Instant)">
 
-Drive-wide changes.
+Watches the **whole drive** and starts a run when matching changes occur (no specific file ids required).
 
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 
 </Accordion>
 <Accordion title="New Notification Watch Files (Instant)">
 
+Notifications for the **listed file ids** only.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
-| Drive Item IDs | File ids |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
+| Drive Item IDs | Files to watch. Picker or **Map** with file ids. |
 
 </Accordion>
 <Accordion title="New or Modified File (Instant)">
 
+Catches **new or updated files**. Optionally scope to folders and MIME type.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Watch Type | New only, modified only, or both |
-| Watch for Items in Folder IDs | Optional folders |
+| Watch for Items in Folder IDs | Optional. Limit events to these folders (picker or **Map**). |
 | Drive Item MIME Type | Optional type filter. See [Google Drive MIME types](https://developers.google.com/drive/api/guides/mime-types) |
 
 </Accordion>
 <Accordion title="New or Updated Comments (Instant)">
 
+Fires on **new or updated comments** on the selected files.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
-| Drive Item IDs | Files to watch |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
+| Drive Item IDs | Files to watch. Picker or **Map** with file ids. |
 
 </Accordion>
 </Accordions>
 
 ## Actions
 
+Pick **Connection** and **Drive ID** first so file and folder pickers can load. Choose items in **Select** mode or paste ids with **Map** when the scenario supplies them.
+
 <Accordions type="multiple">
 <Accordion title="Files: Copy File">
 
+**Copies a file** on Drive (creates another file with the same content).
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
 | Drive ID | Drive with the source file |
 | File | File to copy |
 
 </Accordion>
 <Accordion title="Files: Create New File">
 
+**Creates a new file** from a URL, prior-node binary content, or path; set folder and metadata as needed.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
 | Drive ID | Target drive |
 | Parent Folder | Optional folder |
 | File URL | Or **File Path** (one required) |
@@ -143,9 +159,11 @@ Drive-wide changes.
 </Accordion>
 <Accordion title="Files: Create New File From Template">
 
+**Creates a file from a Google template** (Doc and/or PDF) with optional placeholder replacement.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
 | Drive ID | Drive with template |
 | File | Template document |
 | Mode | Google Doc, PDF, or both |
@@ -155,67 +173,81 @@ Drive-wide changes.
 </Accordion>
 <Accordion title="Files: Create New File From Text">
 
+**Creates a file from plain text** using folder, name, and content fields.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Folder / Name / Content | Optional |
 
 </Accordion>
 <Accordion title="Files: Download File">
 
+**Downloads a file** from Drive; set export format for Google Workspace types when needed.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | File ID | File |
 | Conversion Format | Optional export format for Workspace files |
 
 </Accordion>
 <Accordion title="Files: Find File">
 
+**Finds a file** by name (or partial name) on the selected drive.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Search Name | Optional |
 
 </Accordion>
 <Accordion title="Files: List Files">
 
+**Lists files** in a folder or drive with filters and optional field selection.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Folder | Optional folder |
 | Fields / Filter Text / Include Trashed Files | Optional |
 
 </Accordion>
 <Accordion title="Files: Move File">
 
+**Moves a file** into another folder on the same drive.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | File | File |
 | Folder | Destination folder |
 
 </Accordion>
 <Accordion title="Files: Move File to Trash">
 
+**Moves a file or folder to trash** (soft delete).
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | File or Folder | Item |
 
 </Accordion>
 <Accordion title="Files: Replace File">
 
+**Replaces file content** with new data from a URL or prior node output.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | File | File |
 | File URL or File Path | New content (one required) |
 | Name / Mime Type | Optional |
@@ -223,10 +255,12 @@ Drive-wide changes.
 </Accordion>
 <Accordion title="Files: Update File">
 
+**Updates metadata and optionally content** (parents, name, MIME, advanced API fields).
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | File | File |
 | File URL / File Path / Name / Mime Type | Optional |
 | Add Parents / Remove Parents | Optional |
@@ -236,10 +270,12 @@ Drive-wide changes.
 </Accordion>
 <Accordion title="Files: Upload File">
 
+**Uploads a new file** to Drive from a URL or prior node output.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Folder | Optional |
 | File URL or File Path | One required |
 | Name / Mime Type | Optional |
@@ -247,10 +283,12 @@ Drive-wide changes.
 </Accordion>
 <Accordion title="Folders: Create Folder">
 
+**Creates a folder** on the drive, optionally under a parent folder.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Name | Folder name |
 | Folder | Optional parent |
 | Create Only If Filename Is Unique | Optional |
@@ -258,9 +296,11 @@ Drive-wide changes.
 </Accordion>
 <Accordion title="Folders: Find Folder">
 
+**Finds a folder** by name; optionally include trashed folders.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
 | Drive | Defaults to My Drive |
 | Search Name | Optional |
 | Include Trashed | Optional |
@@ -268,19 +308,23 @@ Drive-wide changes.
 </Accordion>
 <Accordion title="Folders: Get Folder ID for Path">
 
+**Resolves a path** like `a/b/c` **to a folder id** (useful before creating nested files).
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Path | Path with `/`, e.g. `a/b/c` |
 
 </Accordion>
 <Accordion title="Sharing: Add File Sharing Preference">
 
+**Adds a sharing rule** to a file (role and grantee type: user, domain, anyone with link, etc.).
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | File | File |
 | Role | Reader, Commenter, Writer, Owner |
 | Type | Anyone, User, Group, Domain |
@@ -289,29 +333,35 @@ Drive-wide changes.
 </Accordion>
 <Accordion title="Sharing: Get Shared Link">
 
+**Returns a shareable link** for a file or folder.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Drive Item ID | File or folder |
 
 </Accordion>
 <Accordion title="Sharing: Revoke File or Folder Access">
 
+**Revokes one permission** (**Permission ID**) on a file or folder.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Drive Item ID | Item |
 | Permission ID | Permission to remove |
 
 </Accordion>
 <Accordion title="Sharing: Share File or Folder Permissions">
 
+**Grants access** to a user, group, domain, or link with a role (and optional expiry).
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Drive Item ID | Item |
 | Role | Reader, Commenter, Writer, File Organizer, Organizer, Owner |
 | Type | User, Group, Domain, Anyone |
@@ -320,10 +370,12 @@ Drive-wide changes.
 </Accordion>
 <Accordion title="Sharing: Update File or Folder Access">
 
+**Changes the role** of an existing permission (**Permission ID**).
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Drive Item ID | Item |
 | Permission ID | Permission |
 | New Role | New role |
@@ -331,35 +383,43 @@ Drive-wide changes.
 </Accordion>
 <Accordion title="Shared drives: Create Shared Drive">
 
+**Creates a shared drive** with the given name.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
 | Name | Shared drive name |
 
 </Accordion>
 <Accordion title="Shared drives: Get Shared Drive">
 
+**Fetches shared drive metadata** by id.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
 | Drive ID | Shared drive id |
 
 </Accordion>
 <Accordion title="Shared drives: Search for Shared Drives">
 
+**Searches shared drives** with a query string (optional domain-admin mode).
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
 | Search Query | Query string |
 | Use Domain Admin Access | Optional |
 
 </Accordion>
 <Accordion title="Utilities: Convert Excel to Sheets">
 
+**Converts an Excel file** on Drive **into a new Google Sheet**.
+
 | Field | Description |
 | --- | --- |
-| Connection | Drive connection |
-| Drive ID | Drive |
+| Connection | Pick your Google **Drive** **Connection** from the dropdown. |
+| Drive ID | Which Drive (My Drive or shared). **Select** from the list or **Map** the drive id. |
 | Excel File ID | Source Excel |
 | New Google Sheets Name / Parent Folder ID | Optional |
 

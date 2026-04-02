@@ -1,13 +1,24 @@
 ---
 title: AI node
-description: "Use the AI node to work with LLMs directly inside your workflow."
+description: "Create a node for any API call using a plain text description — no manual field setup required."
+lastUpdated: '2026-04-02'
 ---
 
 # AI node
 
-<Callout type="warning" title="This section is under construction">
-Check back later!
-</Callout>
+**AI node** generates a JavaScript node from a request description. Provide a cURL command or describe what data to send and where — the node is created with all the necessary fields.
 
-This page is currently a placeholder. The full guide to the **AI node** in the Workflow Builder is in progress and will be added soon.
+<video autoPlay muted loop playsInline width="100%">
+  <source src="/assets/videos/ai-node-demo.mp4" type="video/mp4" />
+</video>
 
+## How it works
+
+The AI node interface works the same way as the [JavaScript node](/visual-builder/code-tools/javascript) chat: you enter a request description, and the output is a ready-configured JavaScript node. The assistant determines the method, URL, headers, and request body automatically.
+
+## How to use
+
+1. Click the **AI node** button in the bottom menu of the builder — an input window will open.
+2. Enter a cURL command or describe the request: the service, endpoint, and what data needs to be sent.
+3. The assistant creates a JavaScript node with all the necessary fields — method, URL, parameters, and request body.
+4. Review the generated configuration and adjust manually if needed.

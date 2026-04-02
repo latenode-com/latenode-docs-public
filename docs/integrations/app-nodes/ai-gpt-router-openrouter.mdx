@@ -1,7 +1,7 @@
 ---
 title: AI GPT Router (OpenRouter)
 description: Access many LLM providers through one OpenRouter-powered node with PnP billing.
-lastUpdated: '2026-03-31'
+lastUpdated: '2026-04-01'
 ---
 
 # AI GPT Router (OpenRouter)
@@ -10,9 +10,15 @@ lastUpdated: '2026-03-31'
 
 The **AI GPT Router** node reaches models from OpenAI, Anthropic, Google, Grok, Qwen, DeepSeek, Perplexity, and more through **OpenRouter**, in a single node.
 
-This is a **PnP (Plug and Play)** node: no API key or connection. You pay in **PnP tokens** from real token usage (1 PnP token = $1). Prices for specific models are listed in the **Model ID** dropdown next to each option.
+<Callout type="info" title="Plug and Play (PnP) billing">
+  This is a **PnP (Plug and Play)** node: Latenode meters usage and charges **PnP tokens** on top of execution credits (**1 PnP token = $1**). You do not add your own API key on this node. **Per-model prices** are shown in the node settings where you pick the model.
+</Callout>
 
-## Getting structured output
+<Callout type="info" title="Your own API key">
+  To use **your** provider account and key instead, add the [**Custom LLM Connection**](/integrations/app-nodes/custom-llm-connection) node and a connection with the provider **Base URL** (the key is stored in the connection).
+</Callout>
+
+## Getting structured output 
 
 For normal use, enter a prompt and run the node; the reply is plain text.
 
@@ -60,6 +66,8 @@ For fixed field names and types, fill **Output JSON Schema**. The model follows 
 <Accordions type="multiple">
 <Accordion title="Model selection">
 
+Pick the **OpenRouter model**: manual **Model ID**, list filters, or **Auto Router**.
+
 | Field | Description |
 | --- | --- |
 | Provider | Filter **Model ID** by provider (OpenAI, Anthropic, Google, etc.). Optional |
@@ -74,6 +82,8 @@ Either **Model ID** or **Auto Router** must be set, not both.
 
 </Accordion>
 <Accordion title="Basic">
+
+**Prompt**, optional **file**, and/or **message history** for the selected model.
 
 | Field | Description |
 | --- | --- |
@@ -102,6 +112,8 @@ Either **Model ID** or **Auto Router** must be set, not both.
 </Accordion>
 <Accordion title="Generation">
 
+OpenRouter **generation** controls: temperature, top-p/k, max tokens, penalties, stops, bias, compression.
+
 | Field | Description |
 | --- | --- |
 | Temperature | 0 to 2. Higher = more random. Use **Temperature** or **Top P**, not both |
@@ -121,6 +133,8 @@ Either **Model ID** or **Auto Router** must be set, not both.
 </Accordion>
 <Accordion title="Output">
 
+**Structured output**, JSON schema, GBNF grammar, and optional **logprobs**.
+
 | Field | Description |
 | --- | --- |
 | Structured Output | Force JSON. Often enough with a JSON instruction in the prompt |
@@ -133,6 +147,8 @@ Either **Model ID** or **Auto Router** must be set, not both.
 </Accordion>
 <Accordion title="Tools">
 
+**Function definitions** and how the model must pick a tool.
+
 | Field | Description |
 | --- | --- |
 | Tools JSON | Tool definitions, e.g. `[{"type":"function","function":{…}}]` |
@@ -140,6 +156,8 @@ Either **Model ID** or **Auto Router** must be set, not both.
 
 </Accordion>
 <Accordion title="Reasoning">
+
+**Reasoning chain** options: effort, summary, token budget, hide from output.
 
 | Field | Description |
 | --- | --- |
@@ -150,6 +168,8 @@ Either **Model ID** or **Auto Router** must be set, not both.
 
 </Accordion>
 <Accordion title="Other">
+
+Prompt **cache** settings, TTL, and **Session ID** for observability.
 
 | Field | Description |
 | --- | --- |

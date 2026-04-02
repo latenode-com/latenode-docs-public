@@ -1,17 +1,17 @@
 ---
 title: Custom LLM Connection
 description: Call OpenAI-compatible APIs with your own key and base URL from a single node.
-lastUpdated: '2026-03-31'
+lastUpdated: '2026-04-01'
 ---
 
 # Custom LLM Connection
 
 ![Custom LLM node overview](./custom-llm-connection/node-overview.png)
 
-The **Custom LLM** node talks to any **OpenAI-compatible** API: Groq, Perplexity, Ollama, Azure OpenAI, or your own server. Use it when you want your own API key instead of Latenode PnP pricing.
+The **Custom LLM** node talks to any **OpenAI-compatible** API: Groq, Perplexity, Ollama, Azure OpenAI, or your own server. You store the provider **API Key** and **Base URL** in a **Custom LLM** connection.
 
-<Callout type="info" title="OpenAI without your key">
-  For hosted OpenAI on Latenode PnP billing without your own key, use the **Send Message to ChatGPT** node from the catalog.
+<Callout type="info" title="No provider API key?">
+  Use a **Plug and Play** app node from the catalog: you do not enter a provider key there (billing is PnP). For OpenAI models, see [**ChatGPT**](/integrations/app-nodes/chatgpt) (**Send Message to ChatGPT**).
 </Callout>
 
 ## Connection setup
@@ -96,6 +96,8 @@ Support depends on the model; check the provider docs.
 <Accordions type="multiple">
 <Accordion title="Basic">
 
+Connection plus **chat input**: message text, file, and/or OpenAI-style **history** JSON.
+
 | Field | Description |
 | --- | --- |
 | Connection | Custom LLM connection to use |
@@ -114,6 +116,8 @@ Support depends on the model; check the provider docs.
 </Accordion>
 <Accordion title="Generation">
 
+Standard **sampling** parameters for your provider's OpenAI-compatible API.
+
 | Field | Description |
 | --- | --- |
 | Temperature | Use **Temperature** or **Top P**, not both |
@@ -126,6 +130,8 @@ Support depends on the model; check the provider docs.
 </Accordion>
 <Accordion title="Output">
 
+**Structured Output** and **JSON Schema** when the model supports them.
+
 | Field | Description |
 | --- | --- |
 | Structured Output | JSON mode with prompt instructions |
@@ -133,6 +139,8 @@ Support depends on the model; check the provider docs.
 
 </Accordion>
 <Accordion title="Tools">
+
+**Function calling** when your provider and model support tools.
 
 | Field | Description |
 | --- | --- |

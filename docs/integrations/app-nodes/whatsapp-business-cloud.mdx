@@ -1,0 +1,179 @@
+---
+title: WhatsApp Business Cloud
+description: Send messages, templates, and files over WhatsApp Cloud API; inbound events use a Webhook.
+lastUpdated: '2026-04-04'
+---
+
+# WhatsApp Business Cloud
+
+**WhatsApp Business Cloud** nodes send messages, templates, and media through the WhatsApp Cloud API (Meta) using a saved **Connection**.
+
+<Callout type="info" title="Business Cloud vs personal WhatsApp">
+  This integration is the **Business Cloud** API (Meta developer app). **Personal** WhatsApp in the catalog is different; see [Personal accounts troubleshooting](/integrations/app-nodes/personal-accounts-troubleshooting/troubleshooting).
+</Callout>
+
+## Connection
+
+Create **WhatsApp Business Cloud Connection** on the node or in **Authorizations**. Credentials and Meta setup (with screenshots): [WhatsApp Business Cloud (authorization)](/integrations/authorizations/app-authorization-instructions/whatsapp-business-cloud).
+
+![WhatsApp Business Cloud — create authorization on the node](./whatsapp-business-cloud/auth-in-app.png)
+
+<Steps>
+  <Step>
+
+### Open authorization
+
+On the node, open **Connection** → **Create an authorization** (or pick an existing connection).
+
+  </Step>
+  <Step>
+
+### Enter credentials
+
+Fill **WhatsApp Business Cloud Connection** using the labels on the form and the ids/tokens from Meta.
+
+  </Step>
+  <Step>
+
+### Save and select
+
+**Save**, then select this connection in **Connection** on every WhatsApp Business Cloud node.
+
+  </Step>
+</Steps>
+
+## Triggers (webhook)
+
+WhatsApp does not ship a dedicated instant trigger node in the catalog for this integration. You receive inbound events through Meta **webhooks** wired to a **Webhook** trigger in your scenario.
+
+**Template scenario (duplicate and adapt):** [WhatsApp webhook setup](https://app.latenode.com/shared-scenarios/6661daabc427fbac2441b544)
+
+<Steps>
+  <Step>
+
+### Webhook trigger and Webhook Response
+
+Connect your **Webhook** trigger to a **Webhook Response** node.
+
+  </Step>
+  <Step>
+
+### Callback URL in Meta
+
+Copy the **Webhook URL** from the trigger. In your Meta **Facebook Developer** account, open the **Edit Callback URL** dialog for WhatsApp. Paste the URL into **Callback URL**. In **Verify token**, enter any token you choose (you will use the same value where the platform asks for it). Click **Verify and Save**.
+
+  </Step>
+  <Step>
+
+### First run
+
+Run the scenario once so the **Webhook Response** node can complete the verification handshake.
+
+  </Step>
+  <Step>
+
+### Confirm verification
+
+Check that the **Webhook Response** node received the expected response.
+
+  </Step>
+  <Step>
+
+### Add processing branch
+
+Connect the same **Webhook** trigger to a **JavaScript** node (or your processing chain). Disconnect the trigger from the **Webhook Response** node so normal traffic is handled on the new branch.
+
+  </Step>
+  <Step>
+
+### Go live
+
+**Deploy** and **Activate** the scenario. Wait for real WhatsApp events to hit the webhook.
+
+  </Step>
+</Steps>
+
+Webhook callback details also appear under [Webhook (Callback URL)](/integrations/authorizations/app-authorization-instructions/whatsapp-business-cloud#webhook-callback-url) on the authorization page.
+
+## Actions
+
+Use **Select** for dropdowns and **Map** when values come from another node. Required fields marked * in the builder are required on the node.
+
+<Accordions type="multiple">
+<Accordion title="Send Message">
+
+Sends a new message to the selected phone number.
+
+<Callout type="info" title="Receiver phone format">
+  Examples of supported formats for **Receiver**:
+
+  - `+1-212-345-6789`
+  - `+1 (212) 345-6789`
+  - `+1 212 345 6789`
+</Callout>
+
+| Field | Description |
+| --- | --- |
+| Connection* | **WhatsApp Business Cloud Connection**. |
+| Sender ID* | Sending number / sender resource (for example **Test Number** and its id from the dropdown). |
+| Receiver* | Recipient phone number. See formats above. |
+| Message Type* | Message type (for example **TEXT**, or image, audio, video, document, sticker, location, contacts, interactive, depending on options in the node). |
+| Body | Required when **Message Type** is **text**. |
+| Preview URL | Required when **Message Type** is **text**. |
+| Media ID | For image, audio, video, document, and sticker: provide **Media ID** or **Media URL** (at least one). |
+| Media URL | For image, audio, video, document, and sticker: provide **Media URL** or **Media ID** (at least one). |
+| Caption | Required for image, video, document. |
+| File Name | Required for document. |
+| Latitude | Required for location. |
+| Longitude | Required for location. |
+| Location Name | Optional location label. |
+| Location Address | Shown only if **Location Name** is set. |
+| Contacts | Array of contacts. Example: `{"formatted_name": "Steve Johnson"}`. See [WhatsApp Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api) documentation. |
+| Interactive | JSON for interactive payloads only. Do **not** repeat fields this node sets itself, such as `messaging_product`, `recipient_type`, `to`, `type: "interactive"`. Follow the API shape (for example `type`, `header`, `body`, `action`). See [WhatsApp Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api). |
+
+</Accordion>
+<Accordion title="Send Template Message">
+
+Sends a new templated message to the selected phone number.
+
+<Callout type="info" title="Receiver phone format">
+  Same **Receiver** formats as **Send Message** (for example `+1-212-345-6789`, `+1 (212) 345-6789`, `+1 212 345 6789`).
+</Callout>
+
+| Field | Description |
+| --- | --- |
+| Connection* | **WhatsApp Business Cloud Connection**. |
+| Sender ID* | Sending number / sender resource (dropdown; shows name and id, for example test number and numeric id). |
+| Receiver* | Recipient phone number. |
+| Template ID* | Approved template from the list (for example name and locale such as `hello_world` / `en_US`). |
+
+</Accordion>
+<Accordion title="Upload File">
+
+Uploads a file and returns its **Media ID** (for **Send Message** or other steps).
+
+| Field | Description |
+| --- | --- |
+| Connection* | **WhatsApp Business Cloud Connection**. |
+| Sender ID* | Sending number / sender resource used for the upload. |
+| File Name* | Required. |
+| File Data* | Required. File bytes or source the node expects. |
+| File Type* | Required. Must match allowed media types; limits and types are in [WhatsApp documentation](https://developers.facebook.com/docs/whatsapp/cloud-api). |
+
+</Accordion>
+<Accordion title="Download File">
+
+Downloads a file by **Media ID** (subtitle in the catalog: **Download File by ID**).
+
+| Field | Description |
+| --- | --- |
+| Connection* | **WhatsApp Business Cloud Connection**. |
+| Media ID* | Required. The WhatsApp media id to download. |
+
+</Accordion>
+</Accordions>
+
+## Related
+
+- [WhatsApp Business Cloud (authorization)](/integrations/authorizations/app-authorization-instructions/whatsapp-business-cloud)
+- [Personal accounts troubleshooting](/integrations/app-nodes/personal-accounts-troubleshooting/troubleshooting)

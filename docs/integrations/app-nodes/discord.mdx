@@ -1,7 +1,7 @@
 ---
 title: Discord
 description: Send messages, manage channels and roles, and react to Discord events from Latenode scenarios.
-lastUpdated: '2026-03-31'
+lastUpdated: '2026-04-02'
 ---
 
 # Discord
@@ -111,6 +111,8 @@ Add the bot to the target server with the right permissions before using it in a
 
 ## Actions
 
+Most ID fields support **Select** (pick from a loaded list) or **Map** (paste the **numeric id** you copy in Discord, or reference data from another node). If lists stay empty, set **Guild ID** first and check **Connection** above (OAuth needs **Server ID**).
+
 <Accordions type="multiple">
 <Accordion title="Roles: Add Role">
 
@@ -118,18 +120,20 @@ Adds a role to a user on the server.
 
 | Field | Description |
 | --- | --- |
-| Guild ID | Server where the bot is present |
-| User ID | User to update |
-| Available Role | Role to add |
+| Guild ID | Server where the bot is present. **Select** when the dropdown loads, or **Map** the numeric **server id** (same idea as **Server ID** in **Connection**). |
+| User ID | Member to update. **Select** if the node lists users; otherwise **Map** with an ID from another node or from Discord (Developer Mode → right-click user → **Copy User ID**). |
+| Available Role | Role to add. Usually **Select** from roles loaded for that server. |
 
 </Accordion>
 <Accordion title="Roles: Remove User Role">
 
+**Removes a role** from a member on the server.
+
 | Field | Description |
 | --- | --- |
-| Guild ID | Server |
-| User ID | User |
-| User Role | Role to remove |
+| Guild ID | Same as other actions: **Select** from the list or **Map** the guild ID. |
+| User ID | Member to change. **Select** or **Map** the user's numeric id. |
+| User Role | Role to remove. **Select** when server roles appear in the list. |
 
 </Accordion>
 <Accordion title="Channels: Find Channel">
@@ -138,18 +142,20 @@ Returns one channel or all channels.
 
 | Field | Description |
 | --- | --- |
-| Guild ID | Server |
-| Channel ID | Optional. If empty, all channels |
-| Channel Name | Optional filter by name |
+| Guild ID | Server to search. **Select** or **Map** the guild ID. |
+| Channel ID | Optional. Leave empty to return all channels, or set one channel via **Select** / **Map**. |
+| Channel Name | Optional text filter by channel name. |
 
 </Accordion>
 <Accordion title="Channels: Rename Channel">
 
+**Renames a channel** on the server.
+
 | Field | Description |
 | --- | --- |
-| Guild ID | Server |
-| Channel ID | Channel to rename |
-| New Channel Name | New name |
+| Guild ID | Server that owns the channel. **Select** or **Map**. |
+| Channel ID | Channel to rename. **Select** from loaded channels or **Map** the numeric **channel id**. |
+| New Channel Name | New name: type it in **Select** mode or **Map** from scenario data. |
 
 </Accordion>
 <Accordion title="Members: Find User">
@@ -158,45 +164,53 @@ Returns one member or all members.
 
 | Field | Description |
 | --- | --- |
-| Guild ID | Server |
-| User ID | Optional |
-| Username | Optional search |
+| Guild ID | Server to search on. **Select** or **Map** the guild ID. |
+| User ID | Optional. Narrow to one user: **Select** or **Map** their numeric user id. |
+| Username | Optional. Filter by Discord username text. |
 
 </Accordion>
 <Accordion title="Stickers: List Stickers">
 
+**Lists custom stickers** available on the server.
+
 | Field | Description |
 | --- | --- |
-| Guild ID | Server |
+| Guild ID | Server whose stickers to list. **Select** or **Map** the guild ID. |
 
 </Accordion>
 <Accordion title="Messages: Send Direct Message">
 
+**Sends a DM** to a user (opens the bot's DM channel).
+
 | Field | Description |
 | --- | --- |
-| Guild ID | Server |
-| User ID | Recipient |
-| Message Content | Text |
+| Guild ID | Server where the recipient is a member (the bot must be there too). **Select** or **Map** the guild ID. |
+| User ID | Who receives the DM. **Select** if members load in the list; otherwise switch to **Map** and pass a user ID from a previous node or copy it in Discord (Developer Mode → right-click user → **Copy User ID**). |
+| Message Content | Message text. Type it directly or **Map** from another node (for example a webhook or form field). |
 
 </Accordion>
 <Accordion title="Messages: Send Message">
 
+**Posts a message** to a text channel on the server.
+
 | Field | Description |
 | --- | --- |
-| Guild ID | Server |
-| Channel ID | Target channel |
-| Message Content | Optional text |
+| Guild ID | Server. **Select** or **Map** the guild ID first so channel lists can load. |
+| Channel ID | Target channel. **Select** from the dropdown when it fills, or **Map** the numeric **channel id**. |
+| Message Content | Optional. Static text or **Map** dynamic content from the scenario. |
 
 </Accordion>
 <Accordion title="Messages: Send Message with Attachment">
 
+**Sends a channel message with a file** from a prior node or URL.
+
 | Field | Description |
 | --- | --- |
-| Guild ID | Server |
-| Channel ID | Target channel |
-| Message Content | Optional text |
-| Attachment Name | e.g. `1.body.files.[0].filename` |
-| Attachment Path or URL | e.g. `1.body.files.[0].content` or URL |
+| Guild ID | Server. **Select** or **Map** the guild ID. |
+| Channel ID | Target channel. **Select** or **Map** like **Send Message**. |
+| Message Content | Optional caption. Text or **Map**. |
+| Attachment Name | File name shown in Discord. Often **Map** from prior output, e.g. `1.body.files.[0].filename`. |
+| Attachment Path or URL | File body or link. **Map** e.g. `1.body.files.[0].content` or a reachable URL. |
 
 </Accordion>
 <Accordion title="Message components: Buttons JSON">
@@ -205,12 +219,12 @@ Builds a JSON block with 1 to 5 buttons for **Send Message**.
 
 | Field | Description |
 | --- | --- |
-| Buttons Count | 1 to 5 |
-| Button N: Style | Primary, Secondary, Link, … |
-| Button N: Label | Button text |
-| Button N: Custom ID | Required except for Link |
-| Button N: URL | Required for Link |
-| Button N: Disabled | Optional |
+| Buttons Count | How many buttons (1 to 5). Extra **Button N:** fields follow this count. |
+| Button N: Style | Visual style: Primary, Secondary, Link, and other Discord button types. |
+| Button N: Label | Text on the button. |
+| Button N: Custom ID | Id your scenario can read on click. Required for every style except **Link**. |
+| Button N: URL | Required only for **Link** buttons (opens this URL). |
+| Button N: Disabled | Optional. Turn off the button without removing it. |
 
 Field count follows **Buttons Count**.
 
@@ -226,37 +240,41 @@ Fires when someone joins the server.
 
 | Field | Description |
 | --- | --- |
-| Guild ID | Server to watch |
+| Guild ID | Which server to watch. **Select** or **Map** the guild ID (bot must be on that server). |
 
 </Accordion>
 <Accordion title="New Message In Channel">
 
+**Fires when a new message** is posted in the watched channel.
+
 | Field | Description |
 | --- | --- |
-| Guild ID | Server |
-| Channel ID | Channel to watch |
+| Guild ID | Server. Set this first (**Select** / **Map**) so the channel list can load. |
+| Channel ID | Channel to watch. **Select** when available, or **Map** the numeric **channel id**. |
 
 </Accordion>
 <Accordion title="New Message In Thread">
 
+**Fires when a new message** appears in the watched thread.
+
 | Field | Description |
 | --- | --- |
-| Guild ID | Server |
-| Channel ID | Parent channel |
-| Thread ID | Thread to watch |
+| Guild ID | Server. **Select** or **Map** the guild ID. |
+| Channel ID | Parent text channel of the thread. **Select** or **Map**. |
+| Thread ID | Thread to watch. **Select** if listed, or **Map** the numeric **thread id**. |
 
 </Accordion>
 <Accordion title="Message components: Selectors JSON">
 
-Dropdown component JSON for **Send Message**.
+**Dropdown (select menu) JSON** for the **Send Message** node.
 
 | Field | Description |
 | --- | --- |
-| Custom ID | Select menu id |
-| Placeholder | Optional |
-| Minimum Values | Optional |
-| Maximum Values | Optional |
-| Options Count | 1 to 25 |
+| Custom ID | Id your app receives when the user picks an option. |
+| Placeholder | Optional hint text in the closed dropdown. |
+| Minimum Values | Optional minimum number of options the user must pick. |
+| Maximum Values | Optional maximum selections (up to Discord limits). |
+| Options Count | How many menu options (1 to 25); matching option fields follow. |
 
 </Accordion>
 </Accordions>

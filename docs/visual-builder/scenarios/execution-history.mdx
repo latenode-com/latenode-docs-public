@@ -1,48 +1,74 @@
 ---
 title: Execution History
-description: How to view and analyze past scenario executions.
-sidebar_position: 1
-lastUpdated: '2026-01-01'
+description: How to view, analyze, and debug past scenario runs.
+lastUpdated: '2026-04-02'
 ---
 
 # Execution History
 
-<Callout type="info">
-If the history table is empty, you need to run the scenario. For more on running a scenario once, see [One-time Scenario Execution](../../../integrations/core-nodes/trigger-on-run-once.mdx).
-</Callout>
-
-Each scenario run (successful or unsuccessful) is recorded in history. The history table is accessible by clicking the **History** button. The table displays key information about the scenario:
-
-![Execution history](./execution-history/untitled.png)
-
-- **(1)** **Time** the scenario started;
-- **(2)** **Branch** (Development or Production) of the executed scenario, including the version, e.g., v.13 Dev;
-- **(3)** **Status** of scenario execution:
-
-**Success** — if the scenario completed fully
-**Error** — if errors occurred during the scenario
-**Paused** — if the scenario is at the Wait node execution stage
-**New** — if the scenario was stopped by clicking the **Stop** button
-
-- **(4)** **Duration** of scenario execution in seconds;
-- **(5)** Number of **credits** consumed by the scenario;
-- **(6)** Number of **operations** performed in the scenario.
-
-### Viewing the Scenario
-
-Each scenario run record has a **View** button. Clicking the **View** button **(1)** displays the nodes **(2)** and their notifications **(3)** for the selected scenario version. If the scenario failed with an error, error information is displayed **(4)**.
-
-![View scenario](./execution-history/untitled_1.png)
-
-### Restarting the Scenario
-
-Each scenario run record has a **Restart** button. Clicking the **Restart** button:
-
-- Initiates a re-run identical to the selected scenario version and input data
-- Creates a new entry in history
-
-![Restart scenario](./execution-history/untitled_2.png)
+Execution History is a log of every scenario run. It lets you see what happened in each run: which nodes executed, what data passed through them, and where an error occurred. Open it by clicking the **History** button in the visual builder toolbar.
 
 <Callout type="info">
-You can also copy a scenario execution from history.
+If the history table is empty, the scenario has not run yet. To make a test run, use [One-time Scenario Execution](../../../integrations/core-nodes/trigger-on-run-once.mdx).
 </Callout>
+
+## Run list
+
+Every run, successful or not, appears as a row in the history table.
+
+![History panel with run list](./execution-history/history%20tab.png)
+
+| Column | What it shows |
+|--------|---------------|
+| **Time** | When the run started |
+| **Dev/Prod** | Scenario version and branch, e.g. `v.590Prod` or `v.12Dev` |
+| **Status** | Run result (see table below) |
+| **Dur.** | How long the run took |
+| **Credits** | Execution credits consumed |
+| **Plug&Play** | Plug&Play tokens consumed |
+| **Oper.** | Number of operations executed inside the run |
+
+**Run statuses:**
+
+| Status | Meaning |
+|--------|---------|
+| **Success** | The scenario completed without errors |
+| **Error** | An error occurred during execution |
+| **Pause** | The scenario is paused at a Wait node |
+| **Canceled** | The scenario was canceled |
+
+## Viewing a run
+
+Click the eye icon on any row to open the run in **Readonly mode**: the scenario as it looked during that specific execution. Every node shows its status, notifications, and any errors that occurred.
+
+![Readonly mode - viewing run details](./execution-history/Readonly%20mode%20with%20History%20header%20.png)
+
+Click any node to open its data panel. Switch between the incoming and outgoing data tabs, and expand nested objects to inspect specific values.
+
+## Navigating between runs
+
+While viewing a run in Readonly mode, use the **↑↓** buttons in the history panel to move to the previous or next run, without closing the current view.
+
+<video src="/assets/videos/execution-history-navigation.mp4" autoPlay controls loop muted playsInline style={{width: '100%', borderRadius: '8px'}} />
+
+When you switch runs, the following state is preserved:
+
+- position of the scenario canvas in the history window
+- open node output panel
+- selected tab (incoming / outgoing data)
+- scroll position inside the data panel
+- object nesting state (expanded/collapsed)
+
+This makes debugging faster: you can step through recent runs and compare how data changed from one execution to the next.
+
+## Restarting a run
+
+![Restart run button](./execution-history/restart_icon.png)
+
+Click the restart icon on any row. The scenario will re-run using the exact same trigger data it received during the original run.
+
+This is useful for debugging: no need to wait for a real trigger event. You can replay a specific run as many times as needed. Each restart creates a new entry in the history.
+
+## Copy run link
+
+The link icon copies a direct URL to a specific run, useful for referencing it internally or sending to support.

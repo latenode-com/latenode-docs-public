@@ -1,7 +1,7 @@
 ---
 title: Google Sheets
 description: Connect Google Sheets to Latenode scenarios to read, write, and automate spreadsheet data.
-lastUpdated: '2026-03-31'
+lastUpdated: '2026-04-01'
 ---
 
 # Google Sheets
@@ -111,6 +111,8 @@ Triggers start your scenario when something changes in a spreadsheet.
 - **Polling** - Latenode checks the spreadsheet on a schedule. Interval depends on your plan; see [Triggers on the pricing page](https://latenode.com/pricing).
 - **Instant** - The scenario runs as soon as the event happens.
 
+In every trigger, set **Connection** first so **Drive ID**, **Spreadsheet ID**, and sheet fields can populate. Switch any of those fields to **Map** when another node supplies the ids.
+
 <Accordions type="multiple">
 <Accordion title="New Row Added (polling)">
 
@@ -118,9 +120,9 @@ Checks the chosen worksheets on an interval and runs when a new row appears.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets account |
-| Drive ID | Drive that contains the spreadsheet |
-| Spreadsheet ID | Spreadsheet to watch |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Workbook to watch. **Select** or **Map** the spreadsheet id. |
 | Sheet IDs | One or more worksheets to watch for new rows |
 
 </Accordion>
@@ -131,9 +133,9 @@ Runs as soon as a new row is added to any selected worksheet.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets account |
-| Drive ID | Drive that contains the spreadsheet |
-| Spreadsheet ID | Spreadsheet to watch |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Workbook to watch. **Select** or **Map** the spreadsheet id. |
 | Sheet IDs | Worksheets to monitor |
 
 </Accordion>
@@ -144,9 +146,9 @@ Checks a worksheet on an interval and runs when a value changes in the watched c
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets account |
-| Drive ID | Drive that contains the spreadsheet |
-| Spreadsheet ID | Spreadsheet to watch |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Workbook to watch. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet to monitor |
 | Column | Column letter to watch (for example `A`) |
 
@@ -158,9 +160,9 @@ Runs immediately when any value in the spreadsheet is updated.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets account |
-| Drive ID | Drive that contains the spreadsheet |
-| Spreadsheet ID | Spreadsheet to watch |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Workbook to watch. **Select** or **Map** the spreadsheet id. |
 | Sheet IDs | Worksheets to monitor |
 
 </Accordion>
@@ -171,9 +173,9 @@ Checks the spreadsheet on an interval and runs when a new worksheet (tab) is add
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets account |
-| Drive ID | Drive that contains the spreadsheet |
-| Spreadsheet ID | Spreadsheet to watch |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Workbook to watch. **Select** or **Map** the spreadsheet id. |
 
 </Accordion>
 
@@ -183,9 +185,9 @@ Runs as soon as a new worksheet is added.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets account |
-| Drive ID | Drive that contains the spreadsheet |
-| Spreadsheet ID | Spreadsheet to watch |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Workbook to watch. **Select** or **Map** the spreadsheet id. |
 
 </Accordion>
 </Accordions>
@@ -193,6 +195,8 @@ Runs as soon as a new worksheet is added.
 ## Actions
 
 Use actions to read, write, and manage sheets from the middle of a scenario. Open a panel below to see fields for that method.
+
+Choose **Connection**, then **Drive ID** and **Spreadsheet ID** (dropdowns load after the account is set). Use **Map** on ids, ranges, or cell values when they should come from scenario data.
 
 ### Rows
 
@@ -203,9 +207,9 @@ Appends one row at the end of a worksheet.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet to append to |
 | Is Header Row | Whether row 1 is headers |
 
@@ -221,9 +225,9 @@ Appends several rows in one call.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet to append to |
 | Row Values | Array of rows (see below) |
 
@@ -239,9 +243,9 @@ Updates one row. With **Table Contains Headers** enabled, column names come from
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet with the row |
 | Row Number | Row index (minimum 1) |
 | Table Contains Headers | Use named columns from row 1 |
@@ -254,9 +258,9 @@ Updates multiple rows in a range.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet with the rows |
 | Range A1 Notation | Range to update (for example `A1:A1` or `A1:B2`) |
 | Row Values | Same array-of-arrays format as Add Multiple Rows |
@@ -269,9 +273,9 @@ Legacy single-row update. Prefer **Update Row** for new scenarios.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet with the row |
 | Row Number | Row to update |
 | Values | New values per column |
@@ -284,9 +288,9 @@ Deletes a row permanently. Rows below shift up.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet with the row |
 | Row Number | Row to delete |
 
@@ -298,9 +302,9 @@ Clears cell values in a row. The row is not removed.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet Name | Worksheet with the row |
 | Row Number | Row to clear |
 
@@ -312,9 +316,9 @@ Returns the first row where a column equals a value.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet to search |
 | Search Column Letter | Column letter (for example `A`) |
 | Search Value | Value to find |
@@ -327,9 +331,9 @@ Search with filter rules on columns.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet Name | Worksheet to search |
 | Range | Optional A1 range (for example `A1:Z100`) |
 | Filter JSON | Optional filter object (see below) |
@@ -362,9 +366,9 @@ Query with Google Visualization API language (SQL-like filters and sorting).
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet to query |
 | Query | Query string (for example `select * where B = "John"`) |
 
@@ -380,9 +384,9 @@ Reads one cell.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet Name | Worksheet |
 | Cell | A1 address (for example `A1`) |
 
@@ -394,9 +398,9 @@ Reads a range of cells.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet Name | Worksheet |
 | Range | Optional A1 range; if empty, returns the whole sheet |
 
@@ -408,9 +412,9 @@ Writes one cell by A1 address.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet |
 | Cell | A1 address |
 | Value | New value |
@@ -423,9 +427,9 @@ Clears values in a range. Formatting stays.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet Name | Worksheet |
 | Cell A1 Notation | Range (for example `A1:A1` or `A1:B2`) |
 
@@ -441,7 +445,7 @@ Creates a new spreadsheet.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
 | Drive ID | Drive for the new file |
 | Name | Spreadsheet title |
 | Copy from Spreadsheet ID | Optional template spreadsheet id |
@@ -454,9 +458,9 @@ Adds a tab to an existing spreadsheet.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Title | New worksheet name |
 
 </Accordion>
@@ -467,9 +471,9 @@ Copies a worksheet to another spreadsheet.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
 | Drive ID | Drive with the source spreadsheet |
-| Spreadsheet ID | Source spreadsheet |
+| Spreadsheet ID | Source workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet to copy |
 | Destination Spreadsheet ID | Target spreadsheet |
 
@@ -481,9 +485,9 @@ Deletes a worksheet permanently.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet to delete |
 
 </Accordion>
@@ -494,9 +498,9 @@ Returns all worksheets in a spreadsheet.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Spreadsheet to list |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Workbook whose tabs you list. **Select** or **Map** the spreadsheet id. |
 
 </Accordion>
 
@@ -506,9 +510,9 @@ Adds a column to a worksheet.
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Sheet ID | Worksheet |
 | Column Letter | Letter for the new column (for example `A`, `B`) |
 
@@ -520,9 +524,9 @@ Adds a comment on the spreadsheet file (no sheet selection).
 
 | Field | Description |
 | --- | --- |
-| Connection | Google Sheets connection |
-| Drive ID | Drive with the spreadsheet |
-| Spreadsheet ID | Target spreadsheet |
+| Connection | Pick your Google Sheets **Connection** from the dropdown. |
+| Drive ID | Drive where the spreadsheet lives. **Select** or **Map** the drive id. |
+| Spreadsheet ID | Target workbook. **Select** or **Map** the spreadsheet id. |
 | Comment | Comment text |
 
 </Accordion>

@@ -1,16 +1,22 @@
 ---
 title: DeepSeek
 description: Use DeepSeek language models in Latenode scenarios with built-in PnP pricing.
-lastUpdated: '2026-03-31'
+lastUpdated: '2026-04-01'
 ---
 
 # DeepSeek
 
 ![DeepSeek node overview](./deepseek/node-overview.png)
 
-The **DeepSeek** node runs DeepSeek models (including reasoning R1 and general V3) inside your scenarios without an API key.
+The **DeepSeek** node runs DeepSeek models (including reasoning R1 and general V3) inside your scenarios.
 
-This is a **PnP (Plug and Play)** node: no connection or authorization. Cost is billed in **PnP tokens** from actual token usage (1 PnP token = $1). Prices for specific models are listed at the top of the node settings panel.
+<Callout type="info" title="Plug and Play (PnP) billing">
+  This is a **PnP (Plug and Play)** node: Latenode meters usage and charges **PnP tokens** on top of execution credits (**1 PnP token = $1**). You do not add your own API key on this node. **Per-model prices** are shown in the node settings where you pick the model.
+</Callout>
+
+<Callout type="info" title="Your own API key">
+  To use **your** provider account and key instead, add the [**Custom LLM Connection**](/integrations/app-nodes/custom-llm-connection) node and a connection with the provider **Base URL** (the key is stored in the connection).
+</Callout>
 
 ## Models
 
@@ -40,6 +46,8 @@ Return format:
 <Accordions type="multiple">
 <Accordion title="Basic">
 
+**User message** plus optional **dialogue history** JSON (`system` / `user` / `assistant` / `tool` roles).
+
 | Field | Description |
 | --- | --- |
 | Model | DeepSeek model. Default: DeepSeek Chat (V3.1) |
@@ -58,6 +66,8 @@ Return format:
 </Accordion>
 <Accordion title="Generation">
 
+**Sampling** settings: temperature, top-p, max tokens, stops, and penalties.
+
 | Field | Description |
 | --- | --- |
 | Temperature | 0 to 2. Higher = more random. Adjust **Temperature** or **Top P**, not both. Default: 1.0 |
@@ -69,6 +79,8 @@ Return format:
 
 </Accordion>
 <Accordion title="Output">
+
+**Response format**: plain text or **`json_object`** (still describe JSON shape in the prompt).
 
 | Field | Description |
 | --- | --- |

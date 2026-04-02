@@ -1,7 +1,7 @@
 ---
 title: Telegram Bot
 description: Send and receive Telegram messages, manage chats, and automate bots you create with BotFather.
-lastUpdated: '2026-03-31'
+lastUpdated: '2026-04-01'
 ---
 
 # Telegram Bot
@@ -173,6 +173,8 @@ The bot must be a **channel administrator** to post in channels.
 
 Main trigger: fires on any bot update (messages, callbacks, inline queries, system events).
 
+Choose **Connection** for the bot that receives updates.
+
 <Callout type="info" title="One active trigger per bot">
   Telegram allows only one active trigger per bot. Split workflows with separate bots and connections.
 </Callout>
@@ -182,7 +184,7 @@ Main trigger: fires on any bot update (messages, callbacks, inline queries, syst
 
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
 | Allowed Updates | Optional filter (messages, callbacks, …). Empty = all |
 | Enable Raw Data Updates | Deliver backlog when the trigger was off |
 | Enable System Messages | Join/leave, pins, etc. |
@@ -220,15 +222,19 @@ Keyboards do not work in channels (only DMs and groups).
 
 ## Actions
 
-Most actions need **Chat ID**. See [How to get a Chat ID](#how-to-get-a-chat-id).
+Most actions need **Chat ID**: numeric id, `@username`, or channel id. Type it, **Map** it from the trigger or another node, or **Select** when the UI offers a list. See [How to get a Chat ID](#how-to-get-a-chat-id).
+
+**Connection** is always your bot connection dropdown.
 
 <Accordions type="multiple">
 <Accordion title="Messages: Send Text Message or Reply">
 
+**Sends text** (or a reply when **Original Message ID** is set). Supports parse modes and reply markup.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Target chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Where to send. Numeric id, `@username`, or channel id; often **Map** from data. |
 | Text | Message body. Over 4096 chars split only with Plain Text parse mode |
 | Parse Mode | Plain Text, Markdown, or HTML |
 | Message Thread ID | Optional forum topic |
@@ -240,10 +246,12 @@ Most actions need **Chat ID**. See [How to get a Chat ID](#how-to-get-a-chat-id)
 </Accordion>
 <Accordion title="Messages: Send Photo">
 
+**Sends a photo** (`file_id`, URL, or binary from a prior node).
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Target |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Where to send. Numeric id, `@username`, or channel id; often **Map** from data. |
 | Photo | `file_id`, URL, or prior node content |
 | File Name | Required for binary content |
 | Caption / Parse Mode | Optional |
@@ -252,10 +260,12 @@ Most actions need **Chat ID**. See [How to get a Chat ID](#how-to-get-a-chat-id)
 </Accordion>
 <Accordion title="Messages: Send Video">
 
+**Sends a video** with optional caption and metadata.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Target |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Where to send. Numeric id, `@username`, or channel id; often **Map** from data. |
 | Video | `file_id`, URL, or binary |
 | File Name | For binary |
 | Caption / Duration / Width / Height | Optional |
@@ -268,18 +278,20 @@ Round video; no caption.
 
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Target |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Where to send. Numeric id, `@username`, or channel id; often **Map** from data. |
 | Video Note | `file_id`, URL, or binary |
 | Length / Duration / Original Message ID / Message Thread ID / Reply Markup | Optional |
 
 </Accordion>
 <Accordion title="Messages: Send Audio File">
 
+**Sends an audio file** (music-style attachment).
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Target |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Where to send. Numeric id, `@username`, or channel id; often **Map** from data. |
 | Audio | `file_id`, URL, or binary |
 | File Name | For binary |
 | Caption / Parse Mode / Message Thread ID / Disable Notifications / Duration / Performer / Title / Original Message ID / Reply Markup | Optional |
@@ -287,20 +299,24 @@ Round video; no caption.
 </Accordion>
 <Accordion title="Messages: Send Voice Message">
 
+**Sends a voice note** (round voice message).
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Target |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Where to send. Numeric id, `@username`, or channel id; often **Map** from data. |
 | Voice Message | `file_id`, URL, or binary |
 | Caption / Parse Mode / Message Thread ID / Disable Notifications / Duration / Original Message ID / Reply Markup | Optional |
 
 </Accordion>
 <Accordion title="Messages: Send Document or Image">
 
+**Sends a document** / generic file attachment.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Target |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Where to send. Numeric id, `@username`, or channel id; often **Map** from data. |
 | Document | `file_id`, URL, or binary |
 | File Name | For binary |
 | Caption / Parse Mode / Disable Notifications / Original Message ID / Message Thread ID / Reply Markup | Optional |
@@ -308,19 +324,23 @@ Round video; no caption.
 </Accordion>
 <Accordion title="Messages: Send Media by URL or ID">
 
+**Sends media by type** (photo, video, audio, document) using a URL or id without uploading bytes in the node.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Target |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Where to send. Numeric id, `@username`, or channel id; often **Map** from data. |
 | Media Type | photo, video, audio, or document |
 
 </Accordion>
 <Accordion title="Messages: Send Sticker">
 
+**Sends a sticker** to the chat.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Target |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Where to send. Numeric id, `@username`, or channel id; often **Map** from data. |
 | Sticker | `file_id`, URL, or binary |
 | Original Message ID / Message Thread ID / Reply Markup | Optional |
 
@@ -331,18 +351,20 @@ Typing / uploading indicators.
 
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Target |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Where to send. Numeric id, `@username`, or channel id; often **Map** from data. |
 | Action | e.g. `typing`, `upload_photo`, `record_video`, … |
 | Message Thread ID | Optional |
 
 </Accordion>
 <Accordion title="Messages: Edit Text Message">
 
+**Edits the text** of an existing message.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 | Message ID | Message to edit |
 | Text | New text |
 | Parse Mode | Plain / Markdown / HTML |
@@ -351,49 +373,59 @@ Typing / uploading indicators.
 </Accordion>
 <Accordion title="Messages: Delete Message">
 
+**Deletes a message** by **Message ID**.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 | Message ID | Message to delete |
 
 </Accordion>
 <Accordion title="Messages: Forward Message">
 
+**Forwards a message** from one chat to another.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Destination |
-| From Chat ID | Source chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Target chat. Numeric id, `@username`, or channel id; **Map** from data. |
+| From Chat ID | Chat you forward from. Same id rules as **Chat ID**; **Map** from data. |
 | Message ID | Message |
 | Disable Notifications | Optional |
 
 </Accordion>
 <Accordion title="Messages: Pin Message">
 
+**Pins a message** in the chat.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 | Message ID | Message |
 | Disable Notifications | Optional |
 
 </Accordion>
 <Accordion title="Messages: Unpin Message">
 
+**Unpins a message**.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 | Message ID | Message |
 
 </Accordion>
 <Accordion title="Chat: Create Chat Invite Link">
 
+**Creates a new invite link** with optional expiry, member cap, and join requests.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 | Name / Expire Date / Maximum Number of Users / Create Join Request | Optional |
 
 </Accordion>
@@ -403,52 +435,62 @@ Returns the primary invite link.
 
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 
 </Accordion>
 <Accordion title="Chat: Get Member Count">
 
+**Returns member count** for the chat or channel.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 
 </Accordion>
 <Accordion title="Chat: List Administrators">
 
+**Lists chat administrators**.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 
 </Accordion>
 <Accordion title="Chat: Kick Chat Member">
 
+**Removes a member** from the chat until **Until Date** (optional).
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 | User ID | Member |
 | Until Date | Optional Unix expiry |
 
 </Accordion>
 <Accordion title="Chat: Promote Chat Member">
 
+**Promotes a member** with admin toggles below.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 | User ID | Member |
 | Can Change Info / Can Create Channel Posts / Can Edit Messages / Can Delete Messages / Can Invite Users / Can Restrict Members / Can Pin Messages / Can Promote Members | Toggles |
 
 </Accordion>
 <Accordion title="Chat: Restrict Chat Member">
 
+**Restricts what a member can send** (and optional until date).
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 | User ID | Member |
 | Until Date | Optional |
 | Can Send Messages / User Can Send Media Messages / Can Send Other Messages / Can Add Web Page Previews | Toggles |
@@ -460,8 +502,8 @@ Default permissions for non-admins.
 
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
-| Chat ID | Chat |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
+| Chat ID | Chat to act in. Numeric id or `@username`; **Map** when the scenario provides it. |
 | Send Text Messages / Send Media Messages / Send Polls / Send Other Messages / Add Web Page Previews / Change Info / Send Invite Users / Pin Messages | Toggles |
 
 </Accordion>
@@ -471,16 +513,18 @@ Requires disabling active triggers or **Delete Webhook** first.
 
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
 | Start Offset / Limit | Pagination |
 | Auto Paging | Auto-advance offset |
 
 </Accordion>
 <Accordion title="Files: Download Attachment">
 
+**Downloads a file** by **File ID** from a bot update or list-updates output.
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
 | File ID | From **New Updates** or **List Updates** |
 
 </Accordion>
@@ -490,15 +534,17 @@ Requires no webhook or inactive triggers.
 
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
 | Start Offset / Limit | Pagination |
 
 </Accordion>
 <Accordion title="Files: Delete Webhook">
 
+**Clears the bot webhook** (needed before **List Updates** or **List Chats** if a webhook exists).
+
 | Field | Description |
 | --- | --- |
-| Connection | Bot connection |
+| Connection | Pick your Telegram bot **Connection** from the dropdown. |
 
 Run before **List Updates** or **List Chats** when a webhook is set.
 

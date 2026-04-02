@@ -1,16 +1,22 @@
 ---
 title: Anthropic Claude
 description: Prompt Claude models in scenarios with Latenode PnP billing and no API key.
-lastUpdated: '2026-03-31'
+lastUpdated: '2026-04-01'
 ---
 
 # Anthropic Claude
 
 ![Anthropic Claude node overview](./anthropic-claude/node-overview.png)
 
-The **Anthropic Claude** node runs Sonnet, Opus, and Haiku in your scenarios without an API key.
+The **Anthropic Claude** node runs Sonnet, Opus, and Haiku in your scenarios.
 
-This is a **PnP (Plug and Play)** node. Cost uses **PnP tokens** from actual usage (1 PnP token = $1). Prices for specific models are listed at the top of the node settings panel.
+<Callout type="info" title="Plug and Play (PnP) billing">
+  This is a **PnP (Plug and Play)** node: Latenode meters usage and charges **PnP tokens** on top of execution credits (**1 PnP token = $1**). You do not add your own API key on this node. **Per-model prices** are shown in the node settings where you pick the model.
+</Callout>
+
+<Callout type="info" title="Your own API key">
+  To use **your** provider account and key instead, add the [**Custom LLM Connection**](/integrations/app-nodes/custom-llm-connection) node and a connection with the provider **Base URL** (the key is stored in the connection).
+</Callout>
 
 ## Getting structured output
 
@@ -77,6 +83,8 @@ For strict fields and types, use **Output JSON Schema**.
 <Accordions type="multiple">
 <Accordion title="Basic">
 
+Request input: **model**, **User Prompt** text, optional **image**, **system** prompt, and alternating **user/assistant** history.
+
 | Field | Description |
 | --- | --- |
 | Model | Claude model. Default: Sonnet 4.5 |
@@ -97,6 +105,8 @@ For strict fields and types, use **Output JSON Schema**.
 
 </Accordion>
 <Accordion title="Generation">
+
+**Length and randomness**: temperature, top-p, max tokens, stop sequences.
 
 | Field | Description |
 | --- | --- |
@@ -119,6 +129,8 @@ Extended thinking shows reasoning before the final answer.
 </Accordion>
 <Accordion title="Tools and Web">
 
+Built-in **web search and code execution**, plus custom **tools** JSON and tool-choice rules.
+
 | Field | Description |
 | --- | --- |
 | Activate Web Search Tool | Claude web search (advanced: use **Tools JSON**) |
@@ -128,6 +140,8 @@ Extended thinking shows reasoning before the final answer.
 
 </Accordion>
 <Accordion title="Output">
+
+Plain text or **JSON** with an optional **strict schema**.
 
 | Field | Description |
 | --- | --- |

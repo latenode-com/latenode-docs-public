@@ -1,7 +1,7 @@
 ---
 title: Gmail
 description: Send and receive mail, manage drafts and labels, and trigger scenarios from Gmail events.
-lastUpdated: '2026-03-31'
+lastUpdated: '2026-04-01'
 ---
 
 # Gmail
@@ -74,6 +74,8 @@ Open **Connection**, click **Use** on an existing one, or **New authorization** 
 
 ## Triggers
 
+In the tables below, **Connection** is the Gmail account dropdown. Other fields are usually plain text or multi-select; switch any field to **Map** when the value should come from an earlier node (search text, label names, limits).
+
 <Accordions type="multiple">
 <Accordion title="New Email">
 
@@ -81,7 +83,7 @@ Runs when a new message arrives.
 
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Search Query | Optional Gmail search (e.g. `from:amy OR from:david`) |
 | Labels | Optional. All selected labels must be on the message |
 | Maximum Items | Max messages per trigger run |
@@ -93,7 +95,7 @@ Like New Email but only when the message has attachments.
 
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Search Query | Optional |
 | Labels | Optional |
 | Maximum Items | Max per run |
@@ -105,7 +107,7 @@ Runs when a new label is created.
 
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 
 </Accordion>
 <Accordion title="New Labeled Email">
@@ -114,24 +116,28 @@ Runs when a label is applied to a message.
 
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Label | Label to watch |
 | Events Limit | Max events per run (up to 500) |
 
 </Accordion>
 <Accordion title="New Starred Email">
 
+Runs when a message is **starred** (marked important).
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Events Limit | Max per run (up to 500) |
 
 </Accordion>
 <Accordion title="New Thread">
 
+Runs when a **new email thread** starts. **Label** optionally narrows which threads count.
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Label | Optional filter by label |
 | Events Limit | Max per run (up to 500) |
 
@@ -140,12 +146,16 @@ Runs when a label is applied to a message.
 
 ## Actions
 
+Same pattern: choose **Connection**, then fill **To**, subject, body, ids, and attachments by hand or use **Map** for dynamic recipients, **Message ID**, **Label ID**, and attachment URLs from the scenario.
+
 <Accordions type="multiple">
 <Accordion title="Send Email">
 
+Sends outbound mail from the scenario: recipients, subject, plain text or HTML body, optional attachments via direct download URLs.
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | To | One address or array |
 | Subject | Subject line |
 | Email Body | Plain text or HTML |
@@ -158,9 +168,11 @@ Runs when a label is applied to a message.
 </Accordion>
 <Accordion title="Create Draft">
 
+Creates a Gmail **draft** without sending. Same fields as send email; **To** is optional.
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Subject | Subject |
 | Email Body | Body |
 | Body Type | `Plaintext` or `html` |
@@ -171,9 +183,11 @@ Runs when a label is applied to a message.
 </Accordion>
 <Accordion title="Create Draft Reply">
 
+Creates a **reply draft** in an existing thread. **Message ID To Reply** is the parent message you are replying to.
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Message ID To Reply | Parent message id |
 | Subject / Email Body / Body Type | Same as draft |
 | To / Cc / Bcc / From Name / Reply To | Optional |
@@ -182,9 +196,11 @@ Runs when a label is applied to a message.
 </Accordion>
 <Accordion title="Reply To Email">
 
+Sends a **reply** in the thread. Requires **Message ID To Reply** and **To** (reply recipient).
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Message ID To Reply | Parent message |
 | Subject / Email Body / Body Type | Reply content |
 | To | Required |
@@ -194,44 +210,52 @@ Runs when a label is applied to a message.
 </Accordion>
 <Accordion title="Create Label">
 
+Creates a new label. Use **/** in the name for **nested** labels (parent/child).
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Name | Label name; use `/` for nested labels |
 
 </Accordion>
 <Accordion title="List Labels">
 
+Returns the account's labels—handy for **Label ID** values in other nodes.
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 
 </Accordion>
 <Accordion title="Add Labels To Email">
 
+**Adds** labels to an existing message by **Message ID** and **Label ID**(s).
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Message ID | Message |
 | Label ID | Label(s) to add |
 
 </Accordion>
 <Accordion title="Remove Labels From Email">
 
+**Removes** labels from a message. Requires **Message ID** and **Label ID**(s).
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Message ID | Message |
 | Label ID | Label(s) to remove |
 
 </Accordion>
 <Accordion title="Find Email">
 
-Up to 300 results.
+Searches messages by label and/or Gmail search query. **Up to 300** results per run.
 
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Label ID | Optional |
 | Search Query | Optional Gmail operators |
 | Include Spam And Trash | Include those folders |
@@ -239,9 +263,11 @@ Up to 300 results.
 </Accordion>
 <Accordion title="Get Attachment">
 
+Downloads **attachments** for a message. Pass a JSON list of attachments or leave it empty to fetch **all** attachments.
+
 | Field | Description |
 | --- | --- |
-| Connection | Gmail connection |
+| Connection | Pick your Gmail **Connection** from the dropdown. |
 | Message ID | Message |
 | Attachments | Optional JSON array `[{"attachmentId","extension","filename"}]`; if empty, all attachments |
 
