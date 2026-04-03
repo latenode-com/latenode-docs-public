@@ -1,15 +1,15 @@
 ---
-title: Database essentials
-description: "The essential guide to the built-in database: why use it, how to create storage and collection, and a walkthrough of every database node."
+title: Working with the built-in database
+description: "Built-in database: structured data in storages and collections; basics of the database and scenario nodes."
 sidebar_position: 0
 lastUpdated: '2026-04-03'
 ---
 
 import { Cards, Card } from 'fumadocs-ui/components/card';
 
-# Database essentials
+# Working with the built-in database
 
-If you use the **built-in database** in scenarios, **start here**: one path from setup in the app to every database node. Latenode stores that data in **storages** and **collections** on the platform. For many scenarios you can skip an external database: less integration work, fewer moving parts, and data stays next to your automations. **How to create a database** below is a quick setup in the app; then the examples follow one sample client record in **`users`** / **`test_storage`**.
+The **built-in database** on Latenode stores **structured data** in **storages** and **collections**. The rest of this page explains the main ideas for working with the database and with the **scenario nodes**.
 
 <h2 id="how-to-create-database">How to create a database</h2>
 
@@ -27,7 +27,7 @@ In the app, go to [**Databases**](https://app.latenode.com/data-storage/database
 
 ### Create a storage
 
-Click **Create storage**. In the name field, use **Latin characters** and **`_` between words**; **spaces are usually not allowed**. Below we use **`test_storage`**.
+Click **Create storage**. In the name field, use **Latin characters**, **no spaces**, and **`_` between word parts**. Below we use **`test_storage`**.
 
 ![Create storage dialog: storage name](./database-basics/step-2-create-storage.png)
 
@@ -40,7 +40,7 @@ After you save, the new storage shows up on the **Databases** list.
 
 ### Create a collection
 
-Open storage **`test_storage`**, click **Create collection**, and set the collection name (**same naming rules**), e.g. **`users`**.
+Open storage **`test_storage`**, click **Create collection**, and set the collection name, e.g. **`users`**.
 
 ![Storage page open, Create collection dialog](./database-basics/step-3-create-collection.png)
 
@@ -51,7 +51,7 @@ After you confirm, the collection appears in that storage’s UI alongside any o
   </Step>
 </Steps>
 
-On the **collection screen** in the app (where you just created **`users`**), you can also **create objects** or run a **YAML filter** on the table. That path skips nodes; below we use the **visual builder** and database nodes.
+On the **collection screen** in the app (where you just created **`users`**), you can also **manually create an object** or **filter values with a query**.
 
 <Callout type="info">
 Detailed filter options, operators, and bulk YAML update formats are on [Querying a collection](./querying-collection) and [Modifying data in a collection](./modifying-data-in-a-collection). The sections below cover **basic** settings that are enough to start.
@@ -63,13 +63,9 @@ Detailed filter options, operators, and bulk YAML update formats are on [Queryin
 
 ![Storage ID and Collection name as dropdowns in a node](./database-basics/node-storage-collection-selects.png)
 
-The same sample record is covered **step by step** next: create, read, update, delete.
-
 ## Create element: insert one object
 
-**What it does:** write **one** object from **Object value** (JSON) into the collection.
-
-**Fields:** **Storage ID**, **Collection name**, **Object value**.
+**This node** writes **one** object from **Object value** (JSON) into the collection.
 
 **Minimal sample** (client card):
 
@@ -83,17 +79,15 @@ The same sample record is covered **step by step** next: create, read, update, d
 }
 ```
 
-**Result:** a new row with a generated object id. The node **output** includes the new **Object ID**. Pass it to **Update object** or **Delete object** when the next steps target the same row. Running again with the same `phone` creates **another** row unless you dedupe in the scenario (e.g. **Get elements** plus branching).
+**Result:** a new row with a generated object id. The node **output** includes the new **Object ID**.
 
 ![Create element: JSON in Object value and output with Object ID](./database-basics/create-element.png)
 
 ## Get elements: fetch objects by filter
 
-**What it does:** return up to **Limit** objects from the collection that match the YAML **Filter**.
+**This node** finds rows in the collection that match the **Filter** (YAML). **Limit** sets the **maximum number of rows** returned in a single node run.
 
-**Fields:** **Storage ID**, **Collection name** (e.g. `users`), **Filter** (YAML), **Limit**.
-
-**Example:** read back the row you created above, by `phone`:
+**Example:** the same client row as above, by `phone`:
 
 ```yaml
 conditions:
@@ -104,7 +98,7 @@ conditions:
       value: "+79001234567"
 ```
 
-Keep **Limit** small (e.g. `10`). Another common filter is by email:
+Another example: filter by email:
 
 ```yaml
 conditions:
@@ -115,17 +109,13 @@ conditions:
       value: "anna@example.com"
 ```
 
-**Output:** an **array** of objects that matched the filter; each row has an **Object ID** for **Update object** and **Delete object** (often you map `object_id` from the first match).
-
-If you already changed **email** with **Update object**, use the **current** address in the filter (in this walkthrough that is **`anna.new@example.com`**).
+**Output:** a **list** (array) of matching objects.
 
 ![Get elements: YAML filter and matching objects in the output](./database-basics/get-elements.png)
 
 ## Update object: update one object by id
 
-**What it does:** find the row by **Object ID** and apply **Value** (JSON).
-
-**Fields:** **Storage ID**, **Collection name**, **Object ID**, **Value**, **Replace** toggle.
+**This node** updates **one** row by **Object ID**; you set new data in **Value** (JSON). The **Replace** toggle chooses a **partial** update vs **replacing the whole row**. With **off**, only the fields in your **Value** JSON change; the rest **stays**. With **on**, the row in the collection is **fully overwritten** by what you put in **Value**.
 
 - **Replace off:** list **only fields to change**; the rest of the stored object stays.  
   **Example:** change notes and deactivate the client:
@@ -162,9 +152,7 @@ If you already changed **email** with **Update object**, use the **current** add
 
 ## Update objects: update multiple rows by filter
 
-**What it does:** find **all** rows that match the YAML **Filter** (same idea as **Get elements**) and apply the YAML **Updater** to **each** match.
-
-**Fields:** **Storage ID**, **Collection name**, **Filter**, **Updater**.
+**This node** finds **all** rows that match the YAML **Filter** (same idea as **Get elements**) and applies the YAML **Updater** to **each** match.
 
 **Example:** the client row now has **`anna.new@example.com`** (after full replace in **Update object**). Set **`active`** to **`"no"`** for rows with that email. **Filter:**
 
@@ -192,21 +180,19 @@ items:
 
 ## Delete object: delete one object
 
-**What it does:** delete the row for **Object ID**.
+**This node** deletes the row for **Object ID**.
 
-**Fields:** **Storage ID**, **Collection name**, **Object ID**.
-
-**Example:** pass **Object ID** from **Get elements**, **Create element**, or another step. The node removes that row. The **output** returns the **Object ID** of the deleted record.
+**Example:** pass **Object ID** from **Get elements**, **Create element**, or another step. The row is removed from the collection. The **output** returns the **Object ID** of the deleted record.
 
 ![Delete object: Object ID from a previous node and deleted id in the output](./database-basics/delete-object.png)
 
 ## Notes
 
-- **IDs from the URL.** For [Database from JS code](./using-databases-from-js-code) or when you need exact **storage** and **collection** values outside the dropdowns, open the collection in the app and check the address bar: after `/data-storage/database/` you get the **storage ID** (UUID), then the **collection** segment.
+- **IDs from the URL.** For [Database from JS code](./using-databases-from-js-code) or when you need exact **storage** and **collection** values, open the collection in the app and check the address bar: after `/data-storage/database/` you get the **storage ID** (UUID), then the **collection** segment.
 
-- **No raw booleans in the samples.** The JSON examples on this page avoid `true` / `false` and numeric `1` / `0` for flags: the “client is active” field uses the strings **`"yes"`** and **`"no"`** in `active`.
+- **Booleans.** The built-in database interprets **`true`** and **`false`** as **`1`** and **`0`**.
 
-- **Storage size.** Each storage currently has a **1 GB** limit. Plan for growth, cleanup, or moving some data elsewhere as you approach it.
+- **Storage size.** Each storage currently has a **1 GB** limit. **Avoid loading** very **large** raw payloads into the database (for example **Base64 images**, big binary strings, and similar).
 
 ## Next steps
 
