@@ -2,10 +2,12 @@
 title: Querying Collection
 description: Retrieving and analyzing data from database collections.
 sidebar_position: 1
-lastUpdated: '2026-01-01'
+lastUpdated: '2026-04-03'
 ---
 
 # Querying Collection
+
+This page is a **YAML format reference** for the **Filter** field in **Get elements** and **Update objects**. If you are new to the built-in database in the builder, start with [Database essentials](./database-basics) for a quick start and a full walkthrough with a sample client record.
 
 When querying data from a collection, you can use a set of constraints to filter objects.
 
@@ -372,7 +374,7 @@ conditions:
           value: 40
       - operation: or
         conditions:
-          - operation: equa;
+          - operation: equal
             query:
               path: info.verified
             expected:

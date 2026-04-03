@@ -1,6 +1,7 @@
 {
   "title": "Database",
   "pages": [
+    "database-basics",
     "querying-collection",
     "modifying-data-in-a-collection",
     "using-databases-from-js-code"
