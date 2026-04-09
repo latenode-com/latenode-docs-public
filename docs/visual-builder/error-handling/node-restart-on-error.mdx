@@ -1,7 +1,7 @@
 ---
 title: Node Restart on Error
 description: Automatically retry the request when the API returns an error (500, 503, timeout, 429, etc.).
-lastUpdated: '2026-01-01'
+lastUpdated: '2026-04-09'
 ---
 
 import { Callout } from 'fumadocs-ui/components/callout';
@@ -35,7 +35,21 @@ Normally, this would stop your scenario. With retry enabled, the system automati
 
 **Delay between Retries (sec)** — pause between attempts in seconds (default: 3).
 
-**REGEXP (Regular Expression)** — optionally filter which errors trigger a retry (by default, any error triggers a retry).
+**REGEXP (Regular Expression)** — optionally filter which errors trigger a retry. By default, any error triggers a retry. If you set a pattern, only errors matching it will cause a restart.
+
+**Important:** Without `.*`, the pattern only matches if the entire error message exactly equals your word. Always write `.*(your_pattern).*`
+
+### Pattern Examples
+
+| Use Case | Pattern |
+|----------|---------|
+| Retry only on 500 errors | `.*500.*` |
+| Retry on 500 or 503 | `.*(500\|503).*` |
+| Retry on timeouts | `.*timeout.*` |
+| Retry on rate limit (429) | `.*429.*` |
+| Retry on 5xx errors | `.*5\d\d.*` |
+
+Uses the **Go (RE2)** regular expression engine. Supported: `\d`, `\s`, `\w`, `|`, `()`. Not supported: lookahead `(?=...)` and lookbehind `(?<=...)`.
 
 <Callout type="info">
 For regular API errors, 2–3 attempts with a 3–5 second delay are usually enough.

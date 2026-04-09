@@ -1,3 +1,18 @@
 {
-  "title": "Core Nodes"
+  "title": "Core Nodes",
+  "pages": [
+    "trigger-on-webhook",
+    "trigger-on-mailhook",
+    "trigger-on-run-once",
+    "trigger-on-schedule",
+    "http-request",
+    "iterator",
+    "setvariables",
+    "getvariables",
+    "setglobalvariables",
+    "getglobalvariables",
+    "json-parse",
+    "webhook-response",
+    "wait"
+  ]
 }
